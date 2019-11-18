@@ -1,32 +1,14 @@
-.App {
-  text-align: center;
-}
-
-.labelEmail {
-  margin-top: 0px;
-  font-size: 20px;
-}
-
-.labelPassword {
-  margin-top: 40px;
-  font-size: 20px;
-}
-
-.App-header {
-  background-color: #1f3a60;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #fff;
-}
-
 body {
   background-color: #1f3a60;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
+}
+.container-section {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .box-login {
@@ -53,8 +35,6 @@ img.logo {
 }
 
 .button {
-  font-weight: bold;
-  margin-top: 80px;
   background-color: #00a6b5;
   width: 240px;
   height: 50px;
@@ -68,4 +48,12 @@ img.logo {
   height: 50px;
   border-radius: 10px;
   color: #fff;
+}
+
+input {
+  background-color: #efefef;
+  width: 240px;
+  height: 30px;
+  border-radius: 2px;
+  font-size: 14px;
 }
