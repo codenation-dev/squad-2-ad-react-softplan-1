@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './../logo.png'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 
 class Login extends React.Component {
@@ -9,18 +11,21 @@ class Login extends React.Component {
     return (
       <div className="box-login">
         <img className="logo" src={logo} alt="Logo" />
+
         <Form>
           <FormGroup>
-            <Label className="labelEmail" for="exampleEmail">Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="myemail@squad2.com" />
+            <Input className="inputEmail" type="email" name="email" id="exampleEmail" placeholder="myemail@squad2.com" isrequired="true" />
           </FormGroup>
           <FormGroup>
-            <Label className="labelPassword" for="examplePassword">Password</Label>
-            <Input className="inputPassword" type="password" name="password" id="examplePassword" placeholder="type your password" />
+
+            <Input className="inputPassword" type="password" name="password" id="examplePassword" placeholder="type your password" isrequired="true" />
           </FormGroup>
-          <Button className="button">Submit</Button>
+          <Button onClick={() => alert('verifica dados')} className="button">Submit</Button>
         </Form >
-        <p className="link-register">I forgot my credentials</p>
+        <div>
+          <p><Link className="link-forgot" to="/forgot">I forgot my credentials</Link></p>
+          <p><Link className="link-register" to="/register">I do not have a registration...</Link></p>
+        </div>
       </div >
     )
   }
