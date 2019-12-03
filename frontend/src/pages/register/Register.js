@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './../logo.png'
+//import logo from './../logo.png'
 import { Button, Label, Form, FormGroup, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ class RegisterUser extends React.Component {
       <div className="App">
         <header className="App-header">
           <div className="box-login">
-            <img className="logo" src={logo} alt="Logo" />
+
             <Form>
               <h1 className="register-user">Register your User </h1>
               <FormGroup>

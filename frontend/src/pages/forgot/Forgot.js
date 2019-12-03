@@ -1,18 +1,16 @@
 import React from 'react';
-import logo from './../logo.png'
+//import logo from './../logo.png'
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 
-
-
-class ForgotLogin extends React.Component {
+class Forgot extends React.Component {
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <div className="box-login">
-            <img className="logo" src={logo} alt="Logo" />
+
 
             <Form>
               <p className="forgot-title">Type your email to recover </p>
@@ -35,4 +33,4 @@ class ForgotLogin extends React.Component {
   }
 }
 
-export default ForgotLogin;
+export default Forgot;
