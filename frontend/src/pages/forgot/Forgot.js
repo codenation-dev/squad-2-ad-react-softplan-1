@@ -1,6 +1,6 @@
 import React from 'react';
 //import logo from './../logo.png'
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { Button, Form, FormGroup } from 'react-bootstrap';
 
 
 class Forgot extends React.Component {
@@ -15,7 +15,7 @@ class Forgot extends React.Component {
             <Form>
               <p className="forgot-title">Type your email to recover </p>
               <FormGroup>
-                <Input className="inputEmail" type="email" name="email" id="exampleEmail" placeholder="myemail@squad2.com" isrequired="true" />
+                <input className="inputEmail" type="email" name="email" id="exampleEmail" placeholder="myemail@squad2.com" isrequired="true" />
               </FormGroup>
 
               <Button onClick={() => alert('Envia Email, depois redireciona a Home')} className="button-register">Submit</Button>

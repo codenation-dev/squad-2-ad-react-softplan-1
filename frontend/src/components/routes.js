@@ -3,6 +3,7 @@ import { Router, Route, Switch } from 'react-router';
 import Login from '../pages/login';
 import Register from '../pages/register';
 import Forgot from '../pages/forgot';
+import Events from './Events';
 import NotFound from './NotFound';
 
 
@@ -14,6 +15,7 @@ const Routes = () => (
       <Route component={Login} exact path="/" />
       <Route component={Register} exact path="/register" />
       <Route component={Forgot} exact path="/forgot" />
+      <Route component={Events} exact path="/events" />
       <Route component={NotFound} />
     </Switch>
   </Router>
