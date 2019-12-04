@@ -5,6 +5,8 @@ import Register from '../pages/register';
 import Forgot from '../pages/forgot';
 import Events from './Events';
 import NotFound from './NotFound';
+import Home from '../pages/home';
+import PrivateRoute from './PrivateRoute';
 
 
 import { history } from '../history'
@@ -16,7 +18,8 @@ const Routes = () => (
       <Route component={Register} exact path="/register" />
       <Route component={Forgot} exact path="/forgot" />
       <Route component={Events} exact path="/events" />
-      <Route component={NotFound} />
+      <PrivateRoute component={Home} exact path="/home" />
+      <PrivateRoute component={NotFound} />
     </Switch>
   </Router>
 )

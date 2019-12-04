@@ -1,48 +1,94 @@
 import React from 'react';
-//import logo from './../logo.png'
-import { Button, Label, Form, FormGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { history } from '../../history';
+import './Register.css';
+import { Form, Field, Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 
+const Register = () => {
 
-class RegisterUser extends React.Component {
+  const handleSubmit = values => {
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <div className="box-login">
-
-            <Form>
-              <h1 className="register-user">Register your User </h1>
-              <FormGroup>
-                <label for="exampleSelects">Sistema</label>
-                <select type="select" name="select" id="exampleSelect">
-                  <option>Squad2 - Financeiro</option>
-                  <option>Squad2 - Tributário</option>
-                  <option>Squad2 - Vendas</option>
-                  <option>Squad2 - Logística</option>
-                  <option>Squad2 - CRM</option>
-                </select>
-              </FormGroup>
-              <FormGroup>
-                <input className="inputName" type="text" name="name" id="exampleName" placeholder="Type your full name here..." isrequired="true" />
-              </FormGroup>
-              <FormGroup>
-                <input className="inputEmailReg" type="email" name="email" id="exampleEmail" placeholder="Type your email" isrequired="true" />
-              </FormGroup>
-              <FormGroup>
-                <input className="inputPassword" type="password" name="password" id="examplePassword" placeholder="A password with 8 characters" isrequired="true" />
-              </FormGroup>
-              <Button onClick={() => alert('Registra em Banco e Redireciona para Home')} className="button">Submit</Button>
-            </Form >
-            <div>
-              <p><Link className="link-forgot" to="/">Back to Login</Link></p>
-            </div>
-          </div >
-        </header>
-      </div>
-    )
+    axios.post('https://lognation.herokuapp.com/api/auth/signup', values)
+      .then(resp => {
+        const { data } = resp
+        if (data) {
+          localStorage.setItem('app-token', data)
+          history.push('/home')
+        }
+      })
   }
+  const validations = yup.object().shape({
+    email: yup.string().email().required(),
+    firstName: yup.string().min(2).required(),
+    lastName: yup.string().min(2).required(),
+    password: yup.string().min(8).required()
+  })
+
+  return (
+    <div className="Register-Container">
+      <div className="Register-Title"><h1>Register</h1></div>
+      <div className="Register-Subtitle"><p>Fill the fields to create an user</p></div>
+      <Formik
+        initialValues={{}}
+        onSubmit={handleSubmit}
+        validationSchema={validations}
+      >
+        <Form className="Register">
+
+          <div className="Register-Group">
+            <Field
+              name="email"
+              className="Register-Field"
+              placeholder="Type your email" />
+            <ErrorMessage
+              component="div"
+              name="email"
+              className="Register-Error"
+            />
+          </div>
+
+          <div className="Register-Group">
+            <Field
+              name="firstName"
+              className="Register-Field"
+              placeholder="Type your Name" />
+            <ErrorMessage
+              component="div"
+              name="firstName"
+              className="Register-Error"
+            />
+          </div>
+
+          <div className="Register-Group">
+            <Field
+              name="lastName"
+              className="Register-Field"
+              placeholder="Type your Lastname" />
+            <ErrorMessage
+              component="div"
+              name="lastName"
+              className="Register-Error"
+            />
+          </div>
+
+          <div Register-Group>
+            <Field
+              name="password"
+              className="Register-Field"
+              placeholder="Type your password"
+            />
+            <ErrorMessage
+              component="div"
+              name="password"
+              className="Register-Error" />
+          </div>
+
+          <button className="Register-Btn" type="submit">Register</button>
+        </Form>
+      </Formik>
+    </div>
+  )
 }
 
-export default RegisterUser;
+export default Register;
