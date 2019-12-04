@@ -6,7 +6,7 @@ const API = axios.create({
 });
 
 const getEventos = async () => {
-  const { data } = await API.post(`/events/findEvents`);
+  const { data } = await API.post(`/events/findEvents?linesPerPage=2`);
   console.log(data);
   return data.content;
 };
