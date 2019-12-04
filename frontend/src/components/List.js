@@ -1,12 +1,13 @@
 import React from "react";
 import {Table, Form, Card, Pagination } from "react-bootstrap";
 
-function List({eventos}) {
+function List({eventos, pagination, setPagination}) {
   let active = 2;
   let items = [];
-  for (let number = 1; number <= 5; number++) {
+  console.log(pagination)
+  for (let number = 1; number <= pagination.totalPages; number++) {
     items.push(
-      <Pagination.Item key={number} active={number === active}>
+      <Pagination.Item key={number} active={(number-1) === pagination.number}>
         {number}
       </Pagination.Item>,
     );
