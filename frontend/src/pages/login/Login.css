@@ -44,3 +44,11 @@
 .Login-Btn:hover {
   cursor: pointer;
 }
+
+.forgot-link {
+  margin-top: 30px;
+}
+
+.forgot-link:hover {
+  cursor: pointer;
+}

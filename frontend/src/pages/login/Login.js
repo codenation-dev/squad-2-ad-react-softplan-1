@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { history } from '../../history';
 import './Login.css';
-
+import { Link } from 'react-router-dom'
 import {
   ErrorMessage,
   Formik,
@@ -68,6 +68,7 @@ const Login = () => {
           <button className="Login-Btn" type="submit">Login</button>
         </Form>
       </Formik>
+      <Link to="/forgot"><p className="forgot-link">Esqueci minha senha</p></Link>
     </div >
   )
 }
