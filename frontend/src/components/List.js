@@ -5,13 +5,20 @@ function List({eventos, pagination, setPagination}) {
   let active = 2;
   let items = [];
   console.log(pagination)
+
+  const setPage = (page) => {
+    console.log("entrou setPage", page)
+    setPagination(page);
+  }
+
   for (let number = 1; number <= pagination.totalPages; number++) {
     items.push(
-      <Pagination.Item key={number} active={(number-1) === pagination.number}>
+      <Pagination.Item key={number} active={(number-1) === pagination.number} onClick={() => setPage(number)}> 
         {number}
       </Pagination.Item>,
     );
   }
+
 
 
   return (
@@ -49,7 +56,7 @@ function List({eventos, pagination, setPagination}) {
                 <span className={dt.environment === "Error"? "bg-danger" : dt.environment === "Warning" ? "bg-warning" : "bg-info"}>{dt.environment}</span>
               </td>
               <td>
-                {dt.title}
+                {dt.id} - {dt.title}
               </td>
               <td>
                 {dt.amount}

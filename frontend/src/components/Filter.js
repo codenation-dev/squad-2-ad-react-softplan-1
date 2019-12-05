@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Col, Button, Card } from "react-bootstrap";
 
 function Filter(props) {
+ 
+  const [environment, setEnvironment] = useState("");
+  const [filterKey, setFilterKey] = useState("");
+  const [filterValue, setFilterValue] = useState("");
+  
+  const setStateParams = (event, field) => {
+    console.log("state")
+    console.log("field",field)
+    console.log("value",event.target.value)
+    if(field === "" && event.target.value){
+      setEnvironment(event.target.value)
+    }
+    if(field !== "" && event.target.value){
+      setFilterKey(field)
+    }
+    if(field != "" && event.target.value){
+      setFilterValue(event.target.value)
+    }
+  }
 
-  const getEventosByLevel = (evento) => {
-    console.log(evento);
-    let level = evento.target.value;
-    console.log(level);
-    props.getEventosByLevel(level)
+  const setParams = () => {
+    let paramsState = {}
+    if(environment){
+      paramsState.environment = environment
+    }
+    if(filterKey){
+      paramsState.filterKey = filterKey
+    }
+    if(filterValue){
+      paramsState.filterValue = filterValue
+    }
+
+    this.props.setParams(paramsState);
   }
 
   return (
@@ -15,20 +42,12 @@ function Filter(props) {
       <Card.Header>Filtro de Logs</Card.Header>
       <Card.Body>
       <Form.Row>
-      <Form.Group as={Col} controlId="formGridAmbiente">
-          <Form.Label>Level</Form.Label>
-          <Form.Control onChange={e => (getEventosByLevel(e))}  as="select">
-            <option value="">Choose...</option>
-            <option value="Error">Error</option>
-            <option value="Warning">Warning</option>
-            <option value="Debug">Debug</option>
-          </Form.Control>
-        </Form.Group>
         <Form.Group as={Col} controlId="formGridAmbiente">
           <Form.Label>Ambiente</Form.Label>
-          <Form.Control  as="select">
-            <option>Choose...</option>
-            <option>...</option>
+          <Form.Control onChange={e => (setStateParams(e, ""))} onBlur={e => (setParams())}  as="select">
+            <option value="">Choose...</option>
+            <option value="PRODUCTION">PRODUCTION</option>
+            <option value="DEVELOPMENT ">DEVELOPMENT </option>
           </Form.Control>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridAmbiente">
