@@ -6,6 +6,8 @@ function Filter(props) {
   const [environment, setEnvironment] = useState("");
   const [filterKey, setFilterKey] = useState("");
   const [filterValue, setFilterValue] = useState("");
+
+  console.log(props)
   
   const setStateParams = (event, field) => {
     console.log("state")
@@ -33,8 +35,9 @@ function Filter(props) {
     if(filterValue){
       paramsState.filterValue = filterValue
     }
-
-    this.props.setParams(paramsState);
+    console.log("State", paramsState);
+    console.log("props",props)
+    props.setParams(paramsState);
   }
 
   return (

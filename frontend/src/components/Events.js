@@ -48,9 +48,10 @@ class Events extends React.Component {
     this.getEventos(paginationNew);
   };
 
-  setParams = (environment, filterKey=null, filterValue=null) => {
+  setParams = ({environment, filterKey=null, filterValue=null}) => {
     const paramsState = {}
-    const paginationNew = this.state.pagination
+    let paginationNew = this.state.pagination
+    paginationNew.pageNo = 0
 
     if(environment){
       paramsState.environment = environment

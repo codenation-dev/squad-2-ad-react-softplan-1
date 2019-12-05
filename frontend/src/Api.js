@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: "https://lognation.herokuapp.com/api",
-  headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWVnb0B2aXNzaW5pLmNvbS5iciIsImlhdCI6MTU3NTUxMjE2MywiZXhwIjoxNTc1NTk4NTYzfQ.9ZvpNZp5redQsGWkNS1eqJlLIYX1vAjCMT2xQzD3Mxk3XZ6UC_0tbJx6exlf202aajRS1wWUUA0gx2GLu67TQw' }
+  headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWVnb0B2aXNzaW5pLmNvbS5iciIsImlhdCI6MTU3NTU0MDg1MSwiZXhwIjoxNTc1NjI3MjUxfQ.fLicxBOCeAtfcmtuiwmHBWuqBfGOQw4d6BWhMrXat2CThK1U21rSTzqsqBSlt276yqjfPzeOJf_i83a4JmB7HQ' }
 });
 
 const getEventos = async ({linesPerPage=10, orderByField="id", orderByDirection="ASC", pageNo=0}, paramsState) => {
