@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { history } from '../../history';
 import './Register.css';
+import { Link } from 'react-router-dom';
 import { Form, Field, Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
@@ -10,13 +11,12 @@ const Register = () => {
   const handleSubmit = values => {
 
     axios.post('https://lognation.herokuapp.com/api/auth/signup', values)
-      .then(resp => {
-        const { data } = resp
-        if (data) {
-          localStorage.setItem('app-token', data)
-          history.push('/login')
-        }
-      })
+      .then(() =>
+
+        alert('usuario criado com sucesso!', history.push('/'))
+
+      )
+      .catch(() => alert('Usuário Não pode ser inserido'))
   }
   const validations = yup.object().shape({
     email: yup.string().email().required(),
@@ -31,6 +31,7 @@ const Register = () => {
       <div className="Register-Subtitle"><p>Fill the fields to create an user</p></div>
       <Formik
         initialValues={{}}
+
         onSubmit={handleSubmit}
         validationSchema={validations}
       >
@@ -87,6 +88,7 @@ const Register = () => {
           <button className="Register-Btn" type="submit">Register</button>
         </Form>
       </Formik>
+      <Link to="/"><p className="login-link">Back to login</p></Link>
     </div>
   )
 }

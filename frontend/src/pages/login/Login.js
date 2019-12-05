@@ -11,20 +11,22 @@ import {
 } from 'formik';
 import * as yup from 'yup';
 
-
-
 const Login = () => {
 
   const handleSubmit = values => {
+    console.log(values)
 
     axios.post('https://lognation.herokuapp.com/api/auth/login', values)
       .then(resp => {
         const { data } = resp
         if (data) {
-          localStorage.setItem('app-token', data)
+          console.log(data)
+          console.log(data.accessToken)
+          localStorage.setItem('app-token', data.accessToken)
           history.push('/home')
         }
       })
+      .catch(() => alert('Não autorizado'))
   }
   const validations = yup.object().shape({
     email: yup.string().email().required(),
@@ -68,7 +70,8 @@ const Login = () => {
           <button className="Login-Btn" type="submit">Login</button>
         </Form>
       </Formik>
-      <Link to="/forgot"><p className="forgot-link">Esqueci minha senha</p></Link>
+      <Link to="/forgot"><p className="forgot-link">I forgot my credentials</p></Link>
+      <Link to="/register"><p className="register-link">I do not have a register</p></Link>
     </div >
   )
 }

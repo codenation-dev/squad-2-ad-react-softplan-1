@@ -18,10 +18,12 @@ const Forgot = () => {
       .then(resp => {
         const { data } = resp
         if (data) {
-          localStorage.setItem('app-token', data)
-          history.push('/home')
+          console.log(data)
         }
+        alert('Sua nova senha foi enviada no seu email', history.push('/'))
+
       })
+      .catch(() => alert('Usuário não encontrado!'))
   }
   const validations = yup.object().shape({
     email: yup.string().email().required()
