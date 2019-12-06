@@ -28,7 +28,7 @@ class Events extends React.Component {
       const result = await getEventos(paginationState, paramsState);
       const eventos = result.content
       const pagination = {
-        linesPerPage:result.numberOfElements, 
+        linesPerPage:result.size, 
         pageNo:result.number,
         orderByField:"createdAt", 
         orderByDirection:"ASC",
@@ -44,8 +44,9 @@ class Events extends React.Component {
 
   setPagination = (page) => {
     const paginationNew = this.state.pagination
+    const paramsState = this.state.paramsState
     paginationNew.pageNo = page-1;
-    this.getEventos(paginationNew);
+    this.getEventos(paginationNew, paramsState);
   };
 
   setParams = ({environment, filterKey=null, filterValue=null}) => {

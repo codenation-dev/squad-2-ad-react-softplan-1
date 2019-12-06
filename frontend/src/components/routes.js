@@ -18,9 +18,9 @@ const Routes = () => (
       <Route component={Login} exact path="/" />
       <Route component={Register} exact path="/register" />
       <Route component={Forgot} exact path="/forgot" />
-      <Route component={Events} exact path="/events" />
       <Route component={Infinite} exact path="/infinite" />
       <PrivateRoute component={Home} exact path="/home" />
+      <PrivateRoute component={Events} exact path="/events" />
       <PrivateRoute component={NotFound} />
     </Switch>
   </Router>
