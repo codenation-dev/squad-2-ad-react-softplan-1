@@ -1,0 +1,76 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: squad2
+      changes:
+        - createTable:
+            tableName: event
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: createdAt
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: updatedAt
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: details
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: userToken
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: environment
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: level
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: application
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ipOrigin
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: shelved
+                  type: boolean
+                  constraints:
+                    nullable: true

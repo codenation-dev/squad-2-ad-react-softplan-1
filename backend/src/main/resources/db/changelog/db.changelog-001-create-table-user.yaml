@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: squad2
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  incrementBy: 1
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: createdAt
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: updatedAt
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: firstName
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastName
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: token
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: photo
+                  type: longblob
+                  constraints:
+                    nullable: true
