@@ -1,36 +1,65 @@
 import React from 'react';
-//import logo from './../logo.png'
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import axios from 'axios';
+import { history } from '../../history';
+import './Forgot.css';
+import {
+  ErrorMessage,
+  Formik,
+  Form,
+  Field
+} from 'formik';
+import * as yup from 'yup';
 
+const Forgot = () => {
 
-class Forgot extends React.Component {
+  const handleSubmit = values => {
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <div className="box-login">
+    axios.post('https://lognation.herokuapp.com/api/auth/forgotPassword', values)
+      .then(resp => {
+        const { data } = resp
+        if (data) {
+          console.log(data)
+        }
+        alert('Sua nova senha foi enviada no seu email', history.push('/'))
 
-
-            <Form>
-              <p className="forgot-title">Type your email to recover </p>
-              <FormGroup>
-                <Input className="inputEmail" type="email" name="email" id="exampleEmail" placeholder="myemail@squad2.com" isrequired="true" />
-              </FormGroup>
-
-              <Button onClick={() => alert('Envia Email, depois redireciona a Home')} className="button-register">Submit</Button>
-            </Form >
-
-            <div className="note-email">
-              <p>A link to reset your password</p>
-              <p>will be sent to your email!
-          </p>
-            </div>
-          </div >
-        </header>
-      </div>
-    )
+      })
+      .catch(() => alert('Usuário não encontrado!'))
   }
+  const validations = yup.object().shape({
+    email: yup.string().email().required()
+  })
+  return (
+    <div className="Login-Container">
+
+      <div className="Login-Title"><h1>Forgot my Id</h1></div>
+      <div className="Login-Subtitle"><p>Fill the field with your registered email</p></div>
+
+      <Formik
+        initialValues={{}}
+        onSubmit={handleSubmit}
+        validationSchema={validations}
+      >
+        <Form className="Login">
+          <div className="Login-Group">
+            <Field
+              name="email"
+              className="Login-Field"
+              placeholder="Type your email"
+            />
+            <ErrorMessage
+              component="div"
+              name="email"
+              className="Login-Error"
+            />
+          </div>
+
+          <button className="Login-Btn" type="submit">Remind me</button>
+        </Form>
+      </Formik>
+    </div >
+  )
 }
+
+
 
 export default Forgot;
