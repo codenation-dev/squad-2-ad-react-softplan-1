@@ -7,7 +7,6 @@ function List({eventos, pagination, setPagination}) {
   console.log(pagination)
 
   const setPage = (page) => {
-    console.log("entrou setPage", page)
     setPagination(page);
   }
 
