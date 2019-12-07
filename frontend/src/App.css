@@ -3,3 +3,25 @@ body {
   background-color: #1f3a60;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+  ========================================
+  Detail
+  ========================================
+*/
+
+h2 {
+  font-size: 34px;
+  line-height: 44px;
+}
+
+h5 {
+  color: #a9b2b9;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 16px;
+  font-weight: 400;
+}

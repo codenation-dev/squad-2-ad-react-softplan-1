@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: "https://lognation.herokuapp.com/api",
-  headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaWVnb0B2aXNzaW5pLmNvbS5iciIsImlhdCI6MTU3NTU0MDg1MSwiZXhwIjoxNTc1NjI3MjUxfQ.fLicxBOCeAtfcmtuiwmHBWuqBfGOQw4d6BWhMrXat2CThK1U21rSTzqsqBSlt276yqjfPzeOJf_i83a4JmB7HQ' }
+  headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJla3JhdXNudW5lc0BnbWFpbC5jb20iLCJpYXQiOjE1NzU2ODAyMTksImV4cCI6MTU3NTc2NjYxOX0._5yNhCkM39J-MIIH4PWVy_K9hecDOuVUqMdWe5-yKBiLdeHtapNd_kTWwhkKHIbhPwfd9foWLpMPggmRVq_kMg' }
 });
 
 const getEventos = async ({linesPerPage=10, orderByField="id", orderByDirection="ASC", pageNo=0}, paramsState) => {
@@ -24,4 +24,9 @@ const getEventosByLevel = async (level) => {
   return dataResult;
 };
 
-export { getEventos, getEventosByLevel };
+const getEventById = async (eventID) => {
+  const { data } = await API.get(`/events/${eventID}`);
+  return data;
+};
+
+export { getEventos, getEventosByLevel, getEventById };
