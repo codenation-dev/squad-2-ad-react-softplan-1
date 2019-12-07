@@ -10,5 +10,11 @@ const getEventos = async ({linesPerPage=10, orderByField="id", orderByDirection=
   return data;
 };
 
+const getList = async () => {
+  const { data } = await API.get(`/environments`);
+  console.log(data)
+  return data;
+};
 
-export { getEventos };
+
+export { getEventos, getList };

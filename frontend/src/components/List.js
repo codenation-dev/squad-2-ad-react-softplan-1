@@ -18,6 +18,10 @@ function List({eventos, pagination, setPagination}) {
     );
   }
 
+  const showCollapse = (elementClass) => {
+    const element = document.getElementById(elementClass);
+    element.classList.toggle("d-none");
+  }
 
 
   return (
@@ -33,34 +37,56 @@ function List({eventos, pagination, setPagination}) {
               </Form.Group>
               </th>
               <th>
-                Level
+                Envorinment
               </th>
               <th>
-                Log
+                Title
               </th>
               <th>
-                Eventos
+                level
+              </th>
+              <th>
+                Details
+              </th>
+              <th>
+                Origin
+              </th>
+              <th>
+                Amount
               </th>
             </tr>
           </thead>
           <tbody>
           {eventos.map(dt => (
-            <tr key={dt.id}>
+            <React.Fragment key={dt.id}>
+            <tr onClick={(event) =>(showCollapse(`line${dt.id}`))}>
               <td>
                 <Form.Group controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" />
                 </Form.Group>
               </td>
-              <td>
-                <span className={dt.environment === "Error"? "bg-danger" : dt.environment === "Warning" ? "bg-warning" : "bg-info"}>{dt.environment}</span>
+              <td className={dt.environment === "PRODUCTION"? "bg-danger" : dt.environment === "DEVELOPMENT" ? "bg-warning" : "bg-info"}>
+                <span>{dt.environment}</span>
               </td>
               <td>
-                {dt.id} - {dt.title}
+                {dt.title}
+              </td>
+              <td>
+                {dt.level}
+              </td>
+              <td>
+                {dt.details}
+              </td>
+              <td>
+                {dt.origin}
               </td>
               <td>
                 {dt.amount}
               </td>
             </tr>
+            <tr><td colSpan="7" className="d-none"></td></tr>
+            <tr><td colSpan="7" className="d-none" id={`line${dt.id}`}>Result</td></tr>
+            </React.Fragment>
           ))}
           </tbody>
         </Table>

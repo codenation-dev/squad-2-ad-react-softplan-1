@@ -2,7 +2,7 @@ import React from "react";
 import { Filter } from "./Filter";
 import { List } from "./List";
 import { Container } from 'react-bootstrap';
-import { getEventos} from "../Api";
+import { getEventos, getList} from "../Api";
 
 class Events extends React.Component {
 
@@ -19,7 +19,8 @@ class Events extends React.Component {
       totalElements: 0,
       number: 0,
     },
-    paramsState: {}
+    paramsState: {},
+    list:[],
 
   };
 
@@ -67,6 +68,8 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
+    const list = getList();
+    //this.setState({list});
     this.getEventos(this.state.pagination);
   }
 
@@ -75,7 +78,7 @@ class Events extends React.Component {
   render() {
     return (
       <Container fluid="true">
-        <Filter setParams={this.setParams} />
+        <Filter list={this.state.list} setParams={this.setParams} />
         <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination}/>
       </Container>
     )
