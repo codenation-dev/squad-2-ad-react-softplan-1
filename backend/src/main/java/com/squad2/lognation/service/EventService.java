@@ -93,6 +93,10 @@ public class EventService extends BaseService<Event, EventRepository> {
                 return repository.findByEnvironmentAndLevel(environment, filterValue, pageRequest);
             case ORIGIN:
                 return repository.findByEnvironmentAndIpOrigin(environment, filterValue, pageRequest);
+            case APPLICATION:
+                return repository.findByEnvironmentAndApplication(environment, filterValue, pageRequest);
+            case TITLE:
+                return repository.findByEnvironmentAndTitle(environment, filterValue, pageRequest);
             default:
                 return repository.findByEnvironment(environment, pageRequest);
         }
