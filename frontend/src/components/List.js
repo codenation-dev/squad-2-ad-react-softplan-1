@@ -1,18 +1,19 @@
 import React, {useState} from "react";
-import {Table, Form, Card, Pagination, Col } from "react-bootstrap";
+import { Form, Card, Pagination, Col, Button, ButtonToolbar } from "react-bootstrap";
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import { shelveEvents, deleteEvents } from "../Api";
 
 function List({eventos, pagination, setPagination}) {
 
   const [itensPerPage, setItensPerPage] = useState();
   const [orderBy, setOrderBy] = useState();
-
+  const [selectedRows, setSelectedRows] = useState([]);
 
   let items = [];
 
   const setPage = (page) => {
     setPagination(page, itensPerPage, orderBy);
   }
-
 
   for (let number = 1; number <= pagination.totalPages; number++) {
     items.push(
@@ -39,12 +40,74 @@ function List({eventos, pagination, setPagination}) {
     setPagination(1, itensPerPage, orderByValue);
   }
 
+  function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
+    
+    let styleName = "p-2 bg-secondary"
+
+    if (fieldValue === "FATAL") {
+        styleName = "p-2 bg-dark text-white"
+    }
+
+    if (fieldValue === "WARNING") {
+        styleName = "p-2 bg-warning"
+    }
+
+    if (fieldValue === "INFORMATION") {
+        styleName = "p-2 bg-info"
+    }
+
+    if (fieldValue === "ERROR") {
+        styleName = "p-2 bg-danger"
+    }
+    
+    return styleName
+  }
+
+  function onRowSelect ({ id }, isSelected) {    
+    if (isSelected) {
+        setSelectedRows([...selectedRows, id])
+    } else {
+        setSelectedRows(selectedRows.filter(it => it !== id))
+    }
+  }
+
+  function onSelectAll(isSelected) {
+    if (!isSelected) {
+        setSelectedRows([]);
+    } else {
+        let selectedItems = [];
+        eventos.map(dt => (
+            selectedItems.push(dt.id)
+        ));
+        setSelectedRows(selectedItems)
+    }
+  }
+
+  const handleShelveClick = async () => {
+    await shelveEvents(selectedRows);
+    setPagination(1, itensPerPage, orderBy);
+    setSelectedRows([]);
+  }
+
+  const handleDeleteClick = async () => {
+    await deleteEvents(selectedRows);
+    setPagination(1, itensPerPage, orderBy);
+    setSelectedRows([]);
+  }
+
+  const selectRowProp = {
+    mode: 'checkbox',
+    clickToSelect: true,
+    onSelect: onRowSelect,
+    onSelectAll: onSelectAll,
+    selected: selectedRows
+  };
 
   return (
     <Card className="mt-3">
       <Card.Header className="text-dark">Lista de Logs</Card.Header>
       <Card.Body>
-      <Form.Row style={{ color: "#000"}}>
+        <Form.Row style={{ color: "#000"}}>
           <Form.Group as={Col} controlId="formGridAmbiente">
             <Form.Label>Itens per Page</Form.Label>
             <Form.Control onChange={e => (SetNumbersPerPage(e))}  as="select" defaultValue={10}>
@@ -63,66 +126,36 @@ function List({eventos, pagination, setPagination}) {
             </Form.Control>
           </Form.Group>
         </Form.Row>
-        <Table striped bordered hover responsive size="sm">
-          <thead>
-            <tr>
-              <th  className="text-center align-middle">
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" />
-              </Form.Group>
-              </th>
-              <th className="text-center align-middle">
-                Envorinment
-              </th>
-              <th className="text-center align-middle">
-                level
-              </th>
-              <th className="text-center align-middle">
-                Log
-              </th>
-              <th className="text-center align-middle">
-                Amount
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-          {eventos.map(dt => (
-            <React.Fragment key={dt.id}>
-              <tr onClick={(event) =>(showCollapse(`line${dt.id}`))}>
-                <td className="text-center align-middle">
-                  <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" />
-                  </Form.Group>
-                </td>
-                <td className="text-center align-middle">
-                  <span>{dt.environment}</span>
-                </td>
-                <td className="text-center align-middle">
-                  <span className={
-                      dt.level === "FATAL"? "p-2 bg-dark text-white" : 
-                        dt.level === "WARNING" ? "p-2 bg-warning" : 
-                          dt.level === "INFORMATION" ? "p-2 bg-info" : 
-                            dt.level === "ERROR" ? "p-2 bg-danger" : 
-                              "p-2 bg-secondary"
-                  }>
-                    {dt.level}
-                  </span>
-                </td>
-                <td className="text-center align-middle">
-                  <p>{dt.title}</p>
-                  <p>{dt.ipOrigin}</p>
-                </td>
-                <td className="text-center align-middle">
-                  {dt.amount}
-                </td>
-              </tr>
-            </React.Fragment>
-          ))}
-          </tbody>
-        </Table>
-        <div>
-          <Pagination>{items}</Pagination>
-        </div>
+        <Form.Row>
+            <Form.Group as={Col}>
+                <ButtonToolbar>
+                    <Button variant="secondary" onClick={handleShelveClick}>Shelve items</Button>
+                    <Button variant="danger" onClick={handleDeleteClick}>Delete items</Button>
+                </ButtonToolbar>
+            </Form.Group>
+        </Form.Row>
+        <Form.Row>
+            <Form.Group as={Col}>
+                <BootstrapTable 
+                    striped 
+                    hover
+                    data={eventos}  
+                    selectRow={ selectRowProp } 
+                    options={ { noDataText: 'No events found.' } }>
+                    <TableHeaderColumn width='100' isKey hidden dataField='id'>Id</TableHeaderColumn>
+                    <TableHeaderColumn width='100' hidden dataField='shelved'>Shelved</TableHeaderColumn>
+                    <TableHeaderColumn width='150' dataField='environment'>Environment</TableHeaderColumn>
+                    <TableHeaderColumn width='150' dataField='level' columnClassName={ columnClassNameFormat }>Level</TableHeaderColumn>
+                    <TableHeaderColumn dataField='title'>Title</TableHeaderColumn>
+                    <TableHeaderColumn width='100' dataField='amount'>Amount</TableHeaderColumn>
+                </BootstrapTable>
+            </Form.Group>
+        </Form.Row>
+        <Form.Row>
+            <Form.Group as={Col}>
+                <Pagination>{items}</Pagination>
+            </Form.Group>
+        </Form.Row>
       </Card.Body>
     </Card>
   );

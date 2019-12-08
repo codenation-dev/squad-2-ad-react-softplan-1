@@ -21,4 +21,12 @@ const getEventById = async (eventID) => {
   return data;
 };
 
-export { getEventos, getList, getEventById };
+const shelveEvents = async (eventIds) => {
+    await API.post(`/events/shelveMany`, eventIds);
+};
+
+const deleteEvents = async (eventIds) => {
+    await API.post(`/events/deleteMany`, eventIds);
+};
+
+export { getEventos, getList, getEventById, shelveEvents, deleteEvents };
