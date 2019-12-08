@@ -47,39 +47,35 @@ function Filter(props) {
     <Card>
       <Card.Header>Filtro de Logs</Card.Header>
       <Card.Body>
-      <Form.Row>
-        <Form.Group as={Col} controlId="formGridAmbiente">
-          <Form.Label>Ambiente</Form.Label>
-          <Form.Control onChange={e => (FilterByEnvironment(e))}  as="select" defaultValue={'PRODUCTION'}>
-            {/* {props.list.map((item, idx) => (
-              <option key={idx} value={item}>{item}</option>
-            ))} */}
-            <option value="ALL">ALL</option>
-            <option value="APPROVAL">APPROVAL</option>
-            <option value="DEVELOPMENT">DEVELOPMENT</option>
-            <option value="PRODUCTION">PRODUCTION</option>
-          </Form.Control>
-        </Form.Group>
-        <Form.Group as={Col} controlId="formGridAmbiente">
-          <Form.Label>Campo da Busca:</Form.Label>
-          <Form.Control onChange={e => (FilterByField(e, "field"))} as="select">
-            <option value="NONE">Todos</option>
-            <option value="LEVEL">Level</option>
-            <option value="DETAILS">Details</option>
-            <option value="ORIGIN">Origin</option>
-          </Form.Control>
-        </Form.Group>
-        <Form.Group as={Col}  onChange={e => (FilterByField(e, "value"))} controlId="formGridAmbiente">
-          <Form.Label>Buscar Por</Form.Label>
-          <Form.Control type="text"></Form.Control>
-        </Form.Group>
-        
-        
-      </Form.Row>
-
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+        <Form.Row style={{ color: "#000"}}>
+          <Form.Group as={Col} controlId="formGridAmbiente">
+            <Form.Label>Ambiente</Form.Label>
+            <Form.Control onChange={e => (FilterByEnvironment(e))}  as="select" defaultValue={'PRODUCTION'}>
+              {/* {props.list.map((item, idx) => (
+                <option key={idx} value={item}>{item}</option>
+              ))} */}
+              <option value="ALL">ALL</option>
+              <option value="APPROVAL">APPROVAL</option>
+              <option value="DEVELOPMENT">DEVELOPMENT</option>
+              <option value="PRODUCTION">PRODUCTION</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridAmbiente">
+            <Form.Label>Campo da Busca:</Form.Label>
+            <Form.Control onChange={e => (FilterByField(e, "field"))} as="select">
+              <option value="NONE">Todos</option>
+              <option value="LEVEL">Level</option>
+              <option value="TITLE">Title</option>
+              <option value="ORIGIN">Origin</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group as={Col}  onChange={e => (FilterByField(e, "value"))} controlId="formGridAmbiente">
+            <Form.Label>Buscar Por</Form.Label>
+            <Form.Control type="text"></Form.Control>
+          </Form.Group>
+          
+          
+        </Form.Row>
       </Card.Body>
     </Card>
   );

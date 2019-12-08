@@ -26,12 +26,13 @@ class Events extends React.Component {
 
   getEventos = async (paginationState,paramsState) => {
     try {
+      console.log(this.state);
       const result = await getEventos(paginationState, paramsState);
       const eventos = result.content
       const pagination = {
         linesPerPage:result.size, 
         pageNo:result.number,
-        orderByField:"createdAt", 
+        orderByField:paginationState.orderByField, 
         orderByDirection:"ASC",
         totalPages:result.totalPages,
         totalElements:result.totalElements,
@@ -43,16 +44,19 @@ class Events extends React.Component {
     }
   };
 
-  setPagination = (page) => {
-    const paginationNew = this.state.pagination
+  setPagination = (page=1, itensPerPage=10, orderBy="createdAt") => {
+    const pagination = this.state.pagination
     const paramsState = this.state.paramsState
-    paginationNew.pageNo = page-1;
-    this.getEventos(paginationNew, paramsState);
+    pagination.pageNo = page-1;
+    pagination.linesPerPage = itensPerPage;
+    pagination.orderByField = orderBy;
+    this.setState({pagination})
+    this.getEventos(pagination, paramsState);
   };
 
   setParams = ({environment, filterKey=null, filterValue=null}) => {
     const paramsState = {}
-    let paginationNew = this.state.pagination
+    const paginationNew = this.state.pagination
     paginationNew.pageNo = 0
 
     if(environment){
@@ -68,7 +72,7 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
-    const list = getList();
+    //const list = getList();
     //this.setState({list});
     this.getEventos(this.state.pagination);
   }

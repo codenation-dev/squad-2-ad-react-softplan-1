@@ -6,7 +6,7 @@ const API = axios.create({
 });
 
 const getEventos = async ({linesPerPage=10, orderByField="id", orderByDirection="ASC", pageNo=0}, paramsState) => {
-  const { data } = await API.post(`/events/findEvents?linesPerPage=${linesPerPage}&orderByField=environment&=${orderByDirection}&pageNo=${pageNo}`,paramsState);
+  const { data } = await API.post(`/events/findEvents?linesPerPage=${linesPerPage}&orderByField=${orderByField}&=${orderByDirection}&pageNo=${pageNo}`,paramsState);
   return data;
 };
 

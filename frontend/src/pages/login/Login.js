@@ -23,7 +23,7 @@ const Login = () => {
           console.log(data)
           console.log(data.accessToken)
           localStorage.setItem('app-token', data.accessToken)
-          history.push('/home')
+          history.push('/events')
         }
       })
       .catch(() => alert('Não autorizado'))
@@ -58,6 +58,7 @@ const Login = () => {
           </div>
           <div>
             <Field
+              type="password"
               name="password"
               className="Login-Field"
               placeholder="Type your password"
