@@ -23,10 +23,10 @@ const Login = () => {
 
   }
 
-  const handleSubmit = values => {
+  const handleSubmit = async (values) => {
     setLoading(true)
 
-    axios.post('https://lognation.herokuapp.com/api/auth/login', values)
+    await axios.post('https://lognation.herokuapp.com/api/auth/login', values)
 
       .then(resp => {
         const { data } = resp

@@ -23,11 +23,6 @@ function List({ eventos, pagination, setPagination }) {
     );
   }
 
-  const showCollapse = (elementClass) => {
-    const element = document.getElementById(elementClass);
-    element.classList.toggle("d-none");
-  }
-
   const SetNumbersPerPage = (e) => {
     const itensPerPageValue = e.target.value
     setItensPerPage(itensPerPageValue)
@@ -105,7 +100,7 @@ function List({ eventos, pagination, setPagination }) {
 
   return (
     <Card className="mt-3">
-      <Card.Header className="text-dark">Lista de Logs</Card.Header>
+      
       <Card.Body>
         <Form.Row style={{ color: "#000" }}>
           <Form.Group as={Col} controlId="formGridAmbiente">
