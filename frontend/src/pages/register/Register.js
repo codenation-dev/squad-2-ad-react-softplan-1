@@ -21,14 +21,14 @@ const Register = () => {
   const validations = yup.object().shape({
     email: yup.string().email().required(),
     firstName: yup.string().min(2).required(),
-    lastName: yup.string().min(2).required(),
+    lastName: yup.string(),
     password: yup.string().min(8).required()
   })
 
   return (
     <div className="Register-Container">
       <div className="Register-Title"><h1>Register</h1></div>
-      <div className="Register-Subtitle"><p>Fill the fields to create an user</p></div>
+
       <Formik
         initialValues={{}}
 
@@ -65,7 +65,7 @@ const Register = () => {
             <Field
               name="lastName"
               className="Register-Field"
-              placeholder="Type your Lastname" />
+              placeholder="Type your Lastname (optional)" />
             <ErrorMessage
               component="div"
               name="lastName"
@@ -75,6 +75,7 @@ const Register = () => {
 
           <div Register-Group>
             <Field
+              type="password"
               name="password"
               className="Register-Field"
               placeholder="Type your password"
@@ -85,10 +86,13 @@ const Register = () => {
               className="Register-Error" />
           </div>
 
-          <button className="Register-Btn" type="submit">Register</button>
+          <div className="Btn-Div">
+            <button className="Register-Btn" type="submit">Register</button>
+            <Link to="/"><button className="Back-Btn">Return</button></Link>
+          </div>
         </Form>
       </Formik>
-      <Link to="/"><p className="login-link">Back to login</p></Link>
+
     </div>
   )
 }

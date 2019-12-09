@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { history } from '../../history';
 import './Login.css';
-import { Link } from 'react-router-dom'
+import { Spinner, Alert } from 'react-bootstrap'
+import { Link, Redirect } from 'react-router-dom'
 import {
   ErrorMessage,
   Formik,
@@ -13,21 +14,40 @@ import * as yup from 'yup';
 
 const Login = () => {
 
+  const [loading, setLoading] = useState(false)
+
+  const error = () => {
+
+    alert('Incorrect user or password')
+    setLoading(false)
+
+  }
+
   const handleSubmit = values => {
-    console.log(values)
+    setLoading(true)
 
     axios.post('https://lognation.herokuapp.com/api/auth/login', values)
+
       .then(resp => {
         const { data } = resp
         if (data) {
-          console.log(data)
-          console.log(data.accessToken)
+          // console.log(data)
+          // console.log(data.accessToken)
           localStorage.setItem('app-token', data.accessToken)
+          setLoading(false)
           history.push('/events')
+
         }
       })
-      .catch(() => alert('Não autorizado'))
+      .catch(() => error())
+
   }
+
+  const defaultFormValues = {
+    email: '',
+    password: '',
+  };
+
   const validations = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(8).required()
@@ -35,8 +55,7 @@ const Login = () => {
   return (
     <div className="Login-Container">
 
-      <div className="Login-Title"><h1>Login</h1></div>
-      <div className="Login-Subtitle"><p>Fill the fields to access the system</p></div>
+      <div className="Forgot-Title"><h1>Login</h1></div>
 
       <Formik
         initialValues={{}}
@@ -68,11 +87,20 @@ const Login = () => {
               name="password"
               className="Login-Error" />
           </div>
-          <button className="Login-Btn" type="submit">Login</button>
+          <div className="Btn-Div">
+            <button
+              className="Login-Btn"
+              type="submit"
+              disabled={loading}>
+              {loading && <span>Loading  </span>}
+              {loading && <Spinner animation="border" />}
+              {!loading && <span>Login</span>}
+            </button>
+          </div>
         </Form>
       </Formik>
-      <Link to="/forgot"><p className="forgot-link">I forgot my credentials</p></Link>
-      <Link to="/register"><p className="register-link">I do not have a register</p></Link>
+      <Link to="/forgot"><p className="forgot-link"> Forgot your password ?</p></Link>
+      <Link to="/register"><p className="register-link">Don't you have an account? Get started</p></Link>
     </div >
   )
 }

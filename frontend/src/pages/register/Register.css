@@ -20,7 +20,7 @@
   font-size: 1.2rem;
   border-radius: 7px;
   transition: all 0.1s linear;
-  min-width: 500px;
+  min-width: 300px;
 }
 
 .Register-Field:focus {
@@ -39,6 +39,7 @@
   border: none;
   border-radius: 5px;
   margin-top: 1rem;
+  min-width: 140px;
 }
 
 .Register-Btn:hover {

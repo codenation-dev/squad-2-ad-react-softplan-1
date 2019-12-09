@@ -1,0 +1,66 @@
+.Forgot-Container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 100px;
+}
+
+.Forgot-Title h1 {
+  font-weight: bold;
+}
+.Forgot-Field {
+  border: none;
+  background: rgba(0, 0, 0, 0.25);
+  color: #fdfdfd;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 7px;
+  transition: all 0.1s linear;
+  min-width: 300px;
+}
+
+.Forgot-Field:focus {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.Forgot-Error {
+  color: #ff8080;
+}
+
+.Forgot-Btn {
+  background: #00cc99;
+  padding: 0.5rem 2rem;
+  color: #fdfdfd;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  min-width: 145px;
+}
+
+.Forgot-Btn:hover {
+  cursor: pointer;
+}
+
+.Btn-Div {
+  margin-top: 30px;
+}
+
+.Back-Btn:hover {
+  cursor: pointer;
+}
+
+.Back-Btn {
+  background: #cecece;
+  padding: 0.5rem 2rem;
+  color: #fdfdfd;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-left: 10px;
+  min-width: 145px;
+}

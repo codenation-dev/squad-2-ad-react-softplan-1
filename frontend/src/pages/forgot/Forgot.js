@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { history } from '../../history';
 import './Forgot.css';
 import {
@@ -29,31 +30,30 @@ const Forgot = () => {
     email: yup.string().email().required()
   })
   return (
-    <div className="Login-Container">
-
-      <div className="Login-Title"><h1>Forgot my Id</h1></div>
-      <div className="Login-Subtitle"><p>Fill the field with your registered email</p></div>
-
+    <div className="Forgot-Container">
+      <div className="Forgot-Title"><h1>Forgot my Id</h1></div>
       <Formik
         initialValues={{}}
         onSubmit={handleSubmit}
         validationSchema={validations}
       >
-        <Form className="Login">
-          <div className="Login-Group">
+        <Form className="Forgot">
+          <div className="Forgot-Group">
             <Field
               name="email"
-              className="Login-Field"
+              className="Forgot-Field"
               placeholder="Type your email"
             />
             <ErrorMessage
               component="div"
               name="email"
-              className="Login-Error"
+              className="Forgot-Error"
             />
           </div>
-
-          <button className="Login-Btn" type="submit">Remind me</button>
+          <div className="Btn-Div">
+            <button className="Forgot-Btn" type="submit">Remind</button>
+            <Link to="/"><button className="Back-Btn">Return</button></Link>
+          </div>
         </Form>
       </Formik>
     </div >
