@@ -3,6 +3,7 @@ import {
   Form,
   Card,
   Pagination,
+  Row,
   Col,
   Button,
   ButtonToolbar,
@@ -96,6 +97,20 @@ function List({ eventos, pagination, setPagination }) {
     setPagination(1, itensPerPage, orderBy);
     setSelectedRows([]);
   };
+
+  const showInfo = () => {
+    const start = pagination.number===0
+                    ?1
+                    :(pagination.number*pagination.linesPerPage)+1
+
+    const end = pagination.number===0
+                ? pagination.linesPerPage 
+                : (pagination.number+1)*pagination.linesPerPage < pagination.totalElements
+                  ? (pagination.number+1)*pagination.linesPerPage
+                  : pagination.totalElements
+                  
+    return `Showing ${start} to ${end}  of ${pagination.totalElements} records`
+  }
 
   const selectRowProp = {
     mode: "checkbox",
@@ -197,10 +212,12 @@ function List({ eventos, pagination, setPagination }) {
             ))}
           </tbody>
         </Table>
-        <Col className="text-dark lg-6" >Showing 1 of 30 records</Col>
-        <Col>
+        <Row>
+          <Col lg={3} className="text-dark" >{showInfo()}</Col>
+          <Col className="d-flex justify-content-lg-end">
           <Pagination>{items}</Pagination>
         </Col>
+        </Row>
       </Card.Body>
     </Card>
   );
