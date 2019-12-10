@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { history } from '../../history';
@@ -10,8 +10,12 @@ import {
   Field
 } from 'formik';
 import * as yup from 'yup';
+import { Alert } from 'react-bootstrap';
 
 const Forgot = () => {
+
+  const [showError, setShowError] = useState(false)
+  const [showSuccess, setshowSuccess] = useState(false)
 
   const handleSubmit = values => {
 
@@ -21,17 +25,47 @@ const Forgot = () => {
         if (data) {
           console.log(data)
         }
-        alert('Sua nova senha foi enviada no seu email', history.push('/'))
+        setshowSuccess(true)
+        setTimeout(() => {
+          setshowSuccess(false)
+          history.push('/')
+        }, 5000);
 
       })
-      .catch(() => alert('Usuário não encontrado!'))
+      .catch(() => {
+        setShowError(true)
+        setTimeout(() => {
+          setShowError(false)
+        }, 5000)
+      })
   }
+
   const validations = yup.object().shape({
     email: yup.string().email().required()
   })
+
   return (
     <div className="Forgot-Container">
       <div className="Forgot-Title"><h1>Forgot my Id</h1></div>
+
+      { showError && 
+        <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+          <Alert.Heading>Sorry!</Alert.Heading>
+          <p>
+          User not found!
+          </p>
+        </Alert> 
+      }
+
+      { showSuccess && 
+        <Alert variant="success" onClose={() => setshowSuccess(false)} dismissible>
+          <Alert.Heading>Email sent!</Alert.Heading>
+          <p>
+          Your new password has been sent to your email!
+          </p>
+        </Alert> 
+      }
+
       <Formik
         initialValues={{}}
         onSubmit={handleSubmit}

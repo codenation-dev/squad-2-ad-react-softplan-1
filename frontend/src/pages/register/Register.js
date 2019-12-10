@@ -1,23 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { history } from '../../history';
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { Form, Field, Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { Alert } from 'react-bootstrap';
 
 const Register = () => {
+
+  const [showError, setShowError] = useState(false)
+  const [showSuccess, setshowSuccess] = useState(false)
 
   const handleSubmit = values => {
 
     axios.post('https://lognation.herokuapp.com/api/auth/signup', values)
-      .then(() =>
+      .then(() => {
 
-        alert('usuario criado com sucesso!', history.push('/'))
+        setshowSuccess(true)
+        setTimeout(() => {
+          setshowSuccess(false)
+          history.push('/')
+        }, 5000);
 
-      )
-      .catch(() => alert('Usuário Não pode ser inserido'))
+      })
+      .catch(() => {
+        setShowError(true)
+        setTimeout(() => {
+          setShowError(false)
+        }, 5000)
+      })
   }
+
   const validations = yup.object().shape({
     email: yup.string().email().required(),
     firstName: yup.string().min(2).required(),
@@ -28,6 +42,24 @@ const Register = () => {
   return (
     <div className="Register-Container">
       <div className="Register-Title"><h1>Register</h1></div>
+
+      { showError && 
+        <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+          <Alert.Heading>Sorry!</Alert.Heading>
+          <p>
+          User cannot be create!
+          </p>
+        </Alert> 
+      }
+
+      { showSuccess && 
+        <Alert variant="success" onClose={() => setshowSuccess(false)} dismissible>
+          <Alert.Heading>User Create!</Alert.Heading>
+          <p>
+          Your new user has been create!
+          </p>
+        </Alert> 
+      }
 
       <Formik
         initialValues={{}}

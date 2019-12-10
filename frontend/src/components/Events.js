@@ -3,6 +3,7 @@ import { Filter } from "./Filter";
 import { List } from "./List";
 import { Container } from 'react-bootstrap';
 import { getEventos, getList} from "../Api";
+import Header from "./Header";
 
 class Events extends React.Component {
 
@@ -74,14 +75,14 @@ class Events extends React.Component {
   componentDidMount() {
     //const list = getList();
     //this.setState({list});
+    this.setState({ loading: true })
     this.getEventos(this.state.pagination);
   }
-
-  
 
   render() {
     return (
       <Container fluid="true">
+        <Header />
         <Filter list={this.state.list} setParams={this.setParams} />
         <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination}/>
       </Container>

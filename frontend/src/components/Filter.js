@@ -48,7 +48,7 @@ function Filter(props) {
       <Card.Body>
         <Form.Row style={{ color: "#000"}}>
           <Form.Group as={Col} controlId="formGridAmbiente">
-            <Form.Label>Environment</Form.Label>
+            <Form.Label>Environment:</Form.Label>
             <Form.Control onChange={e => (FilterByEnvironment(e))}  as="select" defaultValue={'PRODUCTION'}>
               {/* {props.list.map((item, idx) => (
                 <option key={idx} value={item}>{item}</option>
@@ -60,7 +60,7 @@ function Filter(props) {
             </Form.Control>
           </Form.Group>
           <Form.Group as={Col} controlId="formGridAmbiente">
-            <Form.Label>Field for search:</Form.Label>
+            <Form.Label>Field search:</Form.Label>
             <Form.Control onChange={e => (FilterByField(e, "field"))} as="select">
               <option value="NONE">All</option>
               <option value="LEVEL">Level</option>

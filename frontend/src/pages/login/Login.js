@@ -15,13 +15,7 @@ import * as yup from 'yup';
 const Login = () => {
 
   const [loading, setLoading] = useState(false)
-
-  const error = () => {
-
-    alert('Incorrect user or password')
-    setLoading(false)
-
-  }
+  const [showError, setShowError] = useState(false)
 
   const handleSubmit = async (values) => {
     setLoading(true)
@@ -39,7 +33,14 @@ const Login = () => {
 
         }
       })
-      .catch(() => error())
+      .catch(() => {
+        setShowError(true)
+        setLoading(false)
+
+        setTimeout(() => {
+          setShowError(false)
+        }, 5000)
+      })
 
   }
 
@@ -56,6 +57,15 @@ const Login = () => {
     <div className="Login-Container">
 
       <div className="Forgot-Title"><h1>Login</h1></div>
+      
+      { showError && 
+        <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+          <Alert.Heading>Sorry!</Alert.Heading>
+          <p>
+          Incorrect user or password!
+          </p>
+        </Alert> 
+      }
 
       <Formik
         initialValues={{}}
@@ -101,10 +111,9 @@ const Login = () => {
       </Formik>
       <Link to="/forgot"><p className="forgot-link"> Forgot your password ?</p></Link>
       <Link to="/register"><p className="register-link">Don't you have an account? Get started</p></Link>
+      
     </div >
   )
 }
-
-
 
 export default Login;
