@@ -53,44 +53,28 @@ function List({ eventos, pagination, setPagination }) {
     setPagination(1, itensPerPage, orderByValue);
   };
 
-  function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
-    let styleName = "p-2 bg-secondary";
-
-    if (fieldValue === "FATAL") {
-      styleName = "p-2 bg-dark text-white";
-    }
-
-    if (fieldValue === "WARNING") {
-      styleName = "p-2 bg-warning";
-    }
-
-    if (fieldValue === "INFORMATION") {
-      styleName = "p-2 bg-info";
-    }
-
-    if (fieldValue === "ERROR") {
-      styleName = "p-2 bg-danger";
-    }
-
-    return styleName;
-  }
-
-  function onRowSelect({ id }, isSelected) {
-    if (isSelected) {
-      setSelectedRows([...selectedRows, id]);
-    } else {
-      setSelectedRows(selectedRows.filter(it => it !== id));
-    }
-  }
-
-  function onSelectAll(isSelected) {
-    if (!isSelected) {
-      setSelectedRows([]);
-    } else {
+  function handleSelectAll(evt) {      
+    if (!evt.target.checked) {
+      setSelectedRows([]);      
+    } else {        
       let selectedItems = [];
       eventos.map(dt => selectedItems.push(dt.id));
       setSelectedRows(selectedItems);
     }
+  }
+
+  function handleSelectRow(evt) {
+    let eventId = parseInt(evt.target.value)
+
+    if (!isRowSelected(eventId)) {
+      setSelectedRows([...selectedRows, eventId]);
+    } else {
+      setSelectedRows(selectedRows.filter(it => it !== eventId));
+    }
+  }
+
+  function isRowSelected(eventId) {
+      return (selectedRows.indexOf(eventId) >= 0)
   }
 
   const handleShelveClick = async () => {
@@ -171,7 +155,7 @@ function List({ eventos, pagination, setPagination }) {
             <tr>
               <th className="text-center align-middle">
                 <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" />
+                    <Form.Check type="checkbox" onChange={handleSelectAll} />
                 </Form.Group>
               </th>
               <th className="text-center align-middle">Envorinment</th>
@@ -185,8 +169,8 @@ function List({ eventos, pagination, setPagination }) {
               <React.Fragment key={dt.id}>
                 <tr onClick={(event) =>(showCollapse(event, dt.id))}>
                   <td data-label="Select" className="align-middle">
-                    <Form.Group controlId="formBasicCheckbox">
-                      <Form.Check type="checkbox" />
+                    <Form.Group controlId="formBasicCheckbox">                        
+                        <Form.Check type="checkbox" value={dt.id} checked={isRowSelected(dt.id)} onChange={handleSelectRow} />
                     </Form.Group>
                   </td>
                   <td data-label="Envorinment" className="align-middle">
