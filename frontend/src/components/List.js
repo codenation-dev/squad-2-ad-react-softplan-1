@@ -23,6 +23,38 @@ function List({ eventos, pagination, setPagination }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [showUnselectedRows, setShowUnselectedRows] = useState(false);
+  const handleCloseUnselectedRows = () => setShowUnselectedRows(false);
+  const handleShowUnselectedRows = () => setShowUnselectedRows(true);
+
+  const [showDialogShelve, setShowDialogShelve] = useState(false);
+  const handleDialogShelveClose = () => setShowDialogShelve(false);
+  const handleDialogShelveShow = () => {
+    if (selectedRows.length > 0) {
+      setShowDialogShelve(true);
+    } else {
+      handleShowUnselectedRows();
+    }
+  };
+  const handleDialogShelveAccept = () => {
+    handleShelveClick();
+    setShowDialogShelve(false);
+  };
+
+  const [showDialogDelete, setShowDialogDelete] = useState(false);
+  const handleDialogDeleteClose = () => setShowDialogDelete(false);
+  const handleDialogDeleteShow = () => {
+    if (selectedRows.length > 0) {
+      setShowDialogDelete(true);
+    } else {
+      handleShowUnselectedRows();
+    }
+  };
+  const handleDialogDeleteAccept = () => {
+    handleDeleteClick();
+    setShowDialogDelete(false);
+  };
+
   let items = [];
 
   const setPage = page => {
@@ -53,10 +85,10 @@ function List({ eventos, pagination, setPagination }) {
     setPagination(1, itensPerPage, orderByValue);
   };
 
-  function handleSelectAll(evt) {      
+  function handleSelectAll(evt) {
     if (!evt.target.checked) {
-      setSelectedRows([]);      
-    } else {        
+      setSelectedRows([]);
+    } else {
       let selectedItems = [];
       eventos.map(dt => selectedItems.push(dt.id));
       setSelectedRows(selectedItems);
@@ -64,7 +96,7 @@ function List({ eventos, pagination, setPagination }) {
   }
 
   function handleSelectRow(evt) {
-    let eventId = parseInt(evt.target.value)
+    let eventId = parseInt(evt.target.value);
 
     if (!isRowSelected(eventId)) {
       setSelectedRows([...selectedRows, eventId]);
@@ -74,7 +106,7 @@ function List({ eventos, pagination, setPagination }) {
   }
 
   function isRowSelected(eventId) {
-      return (selectedRows.indexOf(eventId) >= 0)
+    return selectedRows.indexOf(eventId) >= 0;
   }
 
   const handleShelveClick = async () => {
@@ -90,26 +122,29 @@ function List({ eventos, pagination, setPagination }) {
   };
 
   const showInfo = () => {
-    const start = pagination.number===0
-                    ?1
-                    :(pagination.number*pagination.linesPerPage)+1
+    const start =
+      pagination.number === 0
+        ? 1
+        : pagination.number * pagination.linesPerPage + 1;
 
-    const end = pagination.number===0
-                ? pagination.linesPerPage 
-                : (pagination.number+1)*pagination.linesPerPage < pagination.totalElements
-                  ? (pagination.number+1)*pagination.linesPerPage
-                  : pagination.totalElements
-                  
-    return `Showing ${start} to ${end}  of ${pagination.totalElements} records`
-  }
+    const end =
+      pagination.number === 0
+        ? pagination.linesPerPage
+        : (pagination.number + 1) * pagination.linesPerPage <
+          pagination.totalElements
+        ? (pagination.number + 1) * pagination.linesPerPage
+        : pagination.totalElements;
+
+    return `Showing ${start} to ${end}  of ${pagination.totalElements} records`;
+  };
 
   const showCollapse = (event, eventId) => {
-    console.log(event.currentTarget);
-    if(event.target.type !== "checkbox"){
-      setEventIdSelected(eventId)
-      handleShow()
+    //console.log(event.currentTarget);
+    if (event.target.type !== "checkbox") {
+      setEventIdSelected(eventId);
+      handleShow();
     }
-  }
+  };
 
   return (
     <Card className="mt-3">
@@ -141,10 +176,10 @@ function List({ eventos, pagination, setPagination }) {
         <Form.Row>
           <Form.Group as={Col}>
             <ButtonToolbar>
-              <Button variant="secondary" onClick={handleShelveClick}>
+              <Button variant="secondary" onClick={handleDialogShelveShow}>
                 Shelve items
               </Button>
-              <Button variant="danger" onClick={handleDeleteClick}>
+              <Button variant="danger" onClick={handleDialogDeleteShow}>
                 Delete items
               </Button>
             </ButtonToolbar>
@@ -156,7 +191,7 @@ function List({ eventos, pagination, setPagination }) {
             <tr>
               <th className="text-center align-middle">
                 <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" onChange={handleSelectAll} />
+                  <Form.Check type="checkbox" onChange={handleSelectAll} />
                 </Form.Group>
               </th>
               <th className="text-center align-middle">Environment</th>
@@ -168,10 +203,15 @@ function List({ eventos, pagination, setPagination }) {
           <tbody>
             {eventos.map(dt => (
               <React.Fragment key={dt.id}>
-                <tr onClick={(event) =>(showCollapse(event, dt.id))}>
+                <tr onClick={event => showCollapse(event, dt.id)}>
                   <td data-label="Select" className="align-middle">
-                    <Form.Group controlId="formBasicCheckbox">                        
-                        <Form.Check type="checkbox" value={dt.id} checked={isRowSelected(dt.id)} onChange={handleSelectRow} />
+                    <Form.Group controlId="formBasicCheckbox">
+                      <Form.Check
+                        type="checkbox"
+                        value={dt.id}
+                        checked={isRowSelected(dt.id)}
+                        onChange={handleSelectRow}
+                      />
                     </Form.Group>
                   </td>
                   <td data-label="Envorinment" className="align-middle">
@@ -198,25 +238,80 @@ function List({ eventos, pagination, setPagination }) {
                     <p>{dt.title}</p>
                     <p>{dt.ipOrigin}</p>
                   </td>
-                  <td data-label="Amount" className="align-middle">{dt.amount}</td>
+                  <td data-label="Amount" className="align-middle">
+                    {dt.amount}
+                  </td>
                 </tr>
               </React.Fragment>
             ))}
           </tbody>
         </Table>
         <Row>
-          <Col lg={3} className="text-dark" >{showInfo()}</Col>
+          <Col lg={3} className="text-dark">
+            {showInfo()}
+          </Col>
           <Col className="d-flex justify-content-lg-end">
-          <Pagination size="sm">{items}</Pagination>
-        </Col>
+            <Pagination size="sm">{items}</Pagination>
+          </Col>
         </Row>
       </Card.Body>
+
+      <Modal show={showUnselectedRows} onHide={handleCloseUnselectedRows}>
+        <Modal.Header closeButton>
+          <Modal.Title style={{ color: "#000" }}>
+            No events selected
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ color: "#000" }}>
+          To continue, select an event.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseUnselectedRows}>
+            Ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showDialogShelve} onHide={handleDialogShelveClose}>
+        <Modal.Header closeButton>
+          <Modal.Title style={{ color: "#000" }}>Shelve items</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ color: "#000" }}>
+          Do you really want to shelve the selected events?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDialogShelveClose}>
+            No
+          </Button>
+          <Button variant="primary" onClick={handleDialogShelveAccept}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showDialogDelete} onHide={handleDialogDeleteClose}>
+        <Modal.Header closeButton>
+          <Modal.Title style={{ color: "#000" }}>Delete items</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ color: "#000" }}>
+          Do you really want to delete the selected events?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDialogDeleteClose}>
+            No
+          </Button>
+          <Button variant="primary" onClick={handleDialogDeleteAccept}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <Modal dialogClassName="modal-90w" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ color: "#000" }}>
-          <Detail eventId={eventIdSelected}/>
+          <Detail eventId={eventIdSelected} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
