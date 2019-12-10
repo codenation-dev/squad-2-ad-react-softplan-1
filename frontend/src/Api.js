@@ -1,5 +1,5 @@
 import axios from "axios";
-const appToken = `Bearer ${localStorage.getItem('app-token')}`;
+const appToken = `Bearer ${localStorage.getItem('appToken')}`;
 const API = axios.create({
   baseURL: "https://lognation.herokuapp.com/api",
   headers: { 'Authorization': appToken }

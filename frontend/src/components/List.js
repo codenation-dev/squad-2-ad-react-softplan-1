@@ -159,8 +159,8 @@ function List({ eventos, pagination, setPagination }) {
                     <Form.Check type="checkbox" onChange={handleSelectAll} />
                 </Form.Group>
               </th>
-              <th className="text-center align-middle">Envorinment</th>
-              <th className="text-center align-middle">level</th>
+              <th className="text-center align-middle">Environment</th>
+              <th className="text-center align-middle">Level</th>
               <th className="text-center align-middle">Log</th>
               <th className="text-center align-middle">Amount</th>
             </tr>
