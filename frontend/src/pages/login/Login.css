@@ -33,13 +33,7 @@
 }
 
 .Login-Btn {
-  background: #00cc99;
-  padding: 0.5rem 2rem;
-  color: #fdfdfd;
-  border: none;
-  border-radius: 5px;
-  margin-top: 1rem;
-  min-width: 300px;
+  min-width: 100%;
 }
 
 .Login-Btn:hover {
@@ -66,4 +60,14 @@
   min-width: 300px;
   margin-bottom: 50px;
   text-align: center;
+}
+
+.Login-Btn {
+  background: #00cc99;
+  padding: 0.5rem 2rem;
+  color: #fdfdfd;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  min-width: 100%;
 }

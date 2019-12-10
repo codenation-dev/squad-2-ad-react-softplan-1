@@ -5,7 +5,7 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import { Form, Field, Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { Alert } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 
 const Register = () => {
 
@@ -43,22 +43,22 @@ const Register = () => {
     <div className="Register-Container">
       <div className="Register-Title"><h1>Register</h1></div>
 
-      { showError && 
+      {showError &&
         <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
           <Alert.Heading>Sorry!</Alert.Heading>
           <p>
-          User cannot be create!
+            User cannot be create!
           </p>
-        </Alert> 
+        </Alert>
       }
 
-      { showSuccess && 
+      {showSuccess &&
         <Alert variant="success" onClose={() => setshowSuccess(false)} dismissible>
           <Alert.Heading>User Create!</Alert.Heading>
           <p>
-          Your new user has been create!
+            Your new user has been create!
           </p>
-        </Alert> 
+        </Alert>
       }
 
       <Formik
@@ -119,8 +119,8 @@ const Register = () => {
           </div>
 
           <div className="Btn-Div">
-            <button className="Register-Btn" type="submit">Register</button>
-            <Link to="/"><button className="Back-Btn">Return</button></Link>
+            <Button className="Register-Btn" type="submit">Register</Button>
+            <Link to="/"><Button variant="secondary" className="Back-Btn">Return</Button></Link>
           </div>
         </Form>
       </Formik>

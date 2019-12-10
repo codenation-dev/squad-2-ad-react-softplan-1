@@ -10,7 +10,7 @@ import {
   Field
 } from 'formik';
 import * as yup from 'yup';
-import { Alert } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 
 const Forgot = () => {
 
@@ -48,22 +48,22 @@ const Forgot = () => {
     <div className="Forgot-Container">
       <div className="Forgot-Title"><h1>Forgot my Id</h1></div>
 
-      { showError && 
+      {showError &&
         <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
           <Alert.Heading>Sorry!</Alert.Heading>
           <p>
-          User not found!
+            User not found!
           </p>
-        </Alert> 
+        </Alert>
       }
 
-      { showSuccess && 
+      {showSuccess &&
         <Alert variant="success" onClose={() => setshowSuccess(false)} dismissible>
           <Alert.Heading>Email sent!</Alert.Heading>
           <p>
-          Your new password has been sent to your email!
+            Your new password has been sent to your email!
           </p>
-        </Alert> 
+        </Alert>
       }
 
       <Formik
@@ -85,8 +85,8 @@ const Forgot = () => {
             />
           </div>
           <div className="Btn-Div">
-            <button className="Forgot-Btn" type="submit">Remind</button>
-            <Link to="/"><button className="Back-Btn">Return</button></Link>
+            <Button className="Forgot-Btn" type="submit">Remind</Button>
+            <Link to="/"><Button variant="secondary" className="Back-Btn">Return</Button></Link>
           </div>
         </Form>
       </Formik>

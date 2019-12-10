@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { history } from '../../history';
 import './Login.css';
-import { Spinner, Alert } from 'react-bootstrap'
-import { Link, Redirect } from 'react-router-dom'
+import { Spinner, Alert, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import {
   ErrorMessage,
   Formik,
@@ -27,27 +27,24 @@ const Login = () => {
         if (data) {
           // console.log(data)
           // console.log(data.accessToken)
-          localStorage.setItem('app-token', data.accessToken)
+          localStorage.setItem('appToken', data.accessToken)
           setLoading(false)
           history.push('/events')
 
         }
       })
       .catch(() => {
+
         setShowError(true)
         setLoading(false)
-
         setTimeout(() => {
           setShowError(false)
-        }, 5000)
+        }, 1500)
+
+
       })
 
   }
-
-  const defaultFormValues = {
-    email: '',
-    password: '',
-  };
 
   const validations = yup.object().shape({
     email: yup.string().email().required(),
@@ -55,16 +52,14 @@ const Login = () => {
   })
   return (
     <div className="Login-Container">
-
       <div className="Forgot-Title"><h1>Login</h1></div>
-      
-      { showError && 
+      {showError &&
         <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
           <Alert.Heading>Sorry!</Alert.Heading>
           <p>
-          Incorrect user or password!
+            Incorrect user or password!
           </p>
-        </Alert> 
+        </Alert>
       }
 
       <Formik
@@ -72,12 +67,15 @@ const Login = () => {
         onSubmit={handleSubmit}
         validationSchema={validations}
       >
-        <Form className="Login">
+        <Form className="Login" id="formLogin">
           <div className="Login-Group">
             <Field
+              type="email"
               name="email"
               className="Login-Field"
-              placeholder="Type your email"
+              placeholder="Type your e-mail"
+
+
             />
             <ErrorMessage
               component="div"
@@ -91,6 +89,7 @@ const Login = () => {
               name="password"
               className="Login-Field"
               placeholder="Type your password"
+
             />
             <ErrorMessage
               component="div"
@@ -98,20 +97,20 @@ const Login = () => {
               className="Login-Error" />
           </div>
           <div className="Btn-Div">
-            <button
+            <Button
               className="Login-Btn"
               type="submit"
               disabled={loading}>
               {loading && <span>Loading  </span>}
               {loading && <Spinner animation="border" />}
               {!loading && <span>Login</span>}
-            </button>
+            </Button>
           </div>
         </Form>
       </Formik>
       <Link to="/forgot"><p className="forgot-link"> Forgot your password ?</p></Link>
       <Link to="/register"><p className="register-link">Don't you have an account? Get started</p></Link>
-      
+
     </div >
   )
 }
