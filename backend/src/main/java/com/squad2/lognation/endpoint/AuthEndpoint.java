@@ -47,7 +47,8 @@ public class AuthEndpoint {
         Authentication authentication = authenticationManager.authenticate(loginRequestDto.toCredentials());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.generateToken(loginRequestDto.getEmail());
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        User user = userService.findByEmail(loginRequestDto.getEmail());
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user));
     }
 
     @PostMapping("/signup")

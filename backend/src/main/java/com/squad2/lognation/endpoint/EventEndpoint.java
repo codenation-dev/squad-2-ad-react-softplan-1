@@ -69,12 +69,6 @@ public class EventEndpoint {
         return ResponseEntity.ok().body(event);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        eventService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
     @PostMapping("/shelveMany")
     public ResponseEntity<Void> shelveMany(@RequestBody List<Long> eventIdList) {
         eventService.shelveMany(eventIdList);

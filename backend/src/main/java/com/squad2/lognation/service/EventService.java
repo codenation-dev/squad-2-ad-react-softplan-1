@@ -26,8 +26,10 @@ public class EventService extends BaseService<Event, EventRepository> {
 
      public void shelve(Long eventId) {
         Event event = findById(eventId);
-        if (event.getShelved()) {
-            throw new StandardException("M00015");
+        if (event.getShelved() != null) {
+            if (event.getShelved()) {
+                throw new StandardException("M00015");
+            }
         }
         event.setShelved(true);
         update(event);
@@ -47,7 +49,13 @@ public class EventService extends BaseService<Event, EventRepository> {
 
     public void deleteMany(List<Long> eventIdList) {
         for (Long eventId : eventIdList) {
-            delete(eventId);
+            try {
+                delete(eventId);
+            } catch (StandardException stdEx) {
+                if (stdEx.getCode() != "M00010") {
+                    throw stdEx;
+                }
+            }
         }
     }
 
