@@ -36,6 +36,11 @@ table td {
   text-align: center;
 }
 
+.modal-90w{
+  width: 90%;
+  max-width: none!important;
+}
+
 @media screen and (max-width: 800px) {
   table {
     border: 0;

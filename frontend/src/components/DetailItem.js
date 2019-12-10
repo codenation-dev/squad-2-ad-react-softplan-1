@@ -11,7 +11,7 @@ function DetailItem({ dataEvent }) {
       </Col>
     </Row>
     <Row>
-      <Col xs={12} md={8}>
+      <Col xs={12} lg={8}>
         <h5> Título </h5>
         <p>{ dataEvent.title }</p>
 
@@ -19,8 +19,20 @@ function DetailItem({ dataEvent }) {
         <p>{ dataEvent.details }</p>
       </Col>
 
-      <Col xs={6} md={4}>
-        <Alert variant="secondary"> error </Alert>
+      <Col xs={12} lg={4}>
+        <Alert className={
+                        dataEvent.level === "FATAL"
+                          ? "p-2 bg-dark text-white"
+                          : dataEvent.level === "WARNING"
+                          ? "p-2 bg-warning"
+                          : dataEvent.level === "INFORMATION"
+                          ? "p-2 bg-info"
+                          : dataEvent.level === "ERROR"
+                          ? "p-2 bg-danger"
+                          : "p-2 bg-secondary"
+                      }>
+          {dataEvent.level}
+        </Alert>
 
         <h6> Eventos </h6>
         <p> { dataEvent.amount } </p>

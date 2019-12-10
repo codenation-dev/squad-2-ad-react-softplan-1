@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { DetailItem } from './DetailItem';
 import { getEventById } from '../Api';
-import Header from './Header';
 
 export default class Detail extends Component {
   state = {
-    eventID: 1,
+    eventID: this.props.eventId,
     dataEvent: [],
     loading: true,
     error: null
@@ -28,9 +27,7 @@ export default class Detail extends Component {
   render(){
     return(
       <React.Fragment>
-        <Header />
         <Container className="mt-5" fluid="true">
-          <Button href="./events"> Voltar </Button>
           <DetailItem dataEvent={ this.state.dataEvent } />
         </Container>
       </React.Fragment>

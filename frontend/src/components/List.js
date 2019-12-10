@@ -7,14 +7,21 @@ import {
   Col,
   Button,
   ButtonToolbar,
-  Table
+  Table,
+  Modal
 } from "react-bootstrap";
+import Detail from "./Detail";
 import { shelveEvents, deleteEvents } from "../Api";
 
 function List({ eventos, pagination, setPagination }) {
   const [itensPerPage, setItensPerPage] = useState();
   const [orderBy, setOrderBy] = useState();
   const [selectedRows, setSelectedRows] = useState([]);
+  const [show, setShow] = useState(false);
+  const [eventIdSelected, setEventIdSelected] = useState(1);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   let items = [];
 
@@ -112,13 +119,13 @@ function List({ eventos, pagination, setPagination }) {
     return `Showing ${start} to ${end}  of ${pagination.totalElements} records`
   }
 
-  const selectRowProp = {
-    mode: "checkbox",
-    clickToSelect: true,
-    onSelect: onRowSelect,
-    onSelectAll: onSelectAll,
-    selected: selectedRows
-  };
+  const showCollapse = (event, eventId) => {
+    console.log(event.currentTarget);
+    if(event.target.type !== "checkbox"){
+      setEventIdSelected(eventId)
+      handleShow()
+    }
+  }
 
   return (
     <Card className="mt-3">
@@ -176,7 +183,7 @@ function List({ eventos, pagination, setPagination }) {
           <tbody>
             {eventos.map(dt => (
               <React.Fragment key={dt.id}>
-                <tr>
+                <tr onClick={(event) =>(showCollapse(event, dt.id))}>
                   <td data-label="Select" className="align-middle">
                     <Form.Group controlId="formBasicCheckbox">
                       <Form.Check type="checkbox" />
@@ -219,6 +226,19 @@ function List({ eventos, pagination, setPagination }) {
         </Col>
         </Row>
       </Card.Body>
+      <Modal dialogClassName="modal-90w" show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ color: "#000" }}>
+          <Detail eventId={eventIdSelected}/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Card>
   );
 }
