@@ -18,36 +18,42 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query("SELECT e " +
             "FROM Event e " +
-            "WHERE ((lower(e.environment) = lower(?1)) or (lower(?1) = 'all'))")
+            "WHERE ((lower(e.environment) = lower(?1)) or (lower(?1) = 'all')) and" +
+                " (coalesce(e.shelved, 0) = 0)")
     Page<Event> findByEnvironment(String environment, Pageable pageable);
 
     @Query("SELECT e " +
             "FROM Event e " +
             "WHERE ((lower(e.environment) = lower(?1)) or (lower(?1) = 'all')) and " +
-            "lower(e.level) like lower(concat('%', ?2,'%'))")
+            "lower(e.level) like lower(concat('%', ?2,'%')) and " +
+                "(coalesce(e.shelved, 0) = 0)")
     Page<Event> findByEnvironmentAndLevel(String environment, String level, Pageable pageable);
 
     @Query("SELECT e " +
             "FROM Event e " +
             "WHERE ((lower(e.environment) = lower(?1)) or (lower(?1) = 'all')) and " +
-            "lower(e.details) like lower(concat('%', ?2,'%'))")
+            "lower(e.details) like lower(concat('%', ?2,'%')) and " +
+                "(coalesce(e.shelved, 0) = 0)")
     Page<Event> findByEnvironmentAndDetails(String environment, String details, Pageable pageable);
 
     @Query("SELECT e " +
             "FROM Event e " +
             "WHERE ((lower(e.environment) = lower(?1)) or (lower(?1) = 'all')) and " +
-            "lower(e.ipOrigin) like lower(concat('%', ?2,'%'))")
+            "lower(e.ipOrigin) like lower(concat('%', ?2,'%')) and " +
+                "(coalesce(e.shelved, 0) = 0)")
     Page<Event> findByEnvironmentAndIpOrigin(String environment, String ipOrigin, Pageable pageable);
 
     @Query("SELECT e " +
             "FROM Event e " +
             "WHERE ((lower(e.environment) = lower(?1)) or (lower(?1) = 'all')) and " +
-            "lower(e.title) like lower(concat('%', ?2,'%'))")
+            "lower(e.title) like lower(concat('%', ?2,'%')) and " +
+                "(coalesce(e.shelved, 0) = 0)")
     Page<Event> findByEnvironmentAndTitle(String environment, String title, Pageable pageable);
 
     @Query("SELECT e " +
             "FROM Event e " +
             "WHERE ((lower(e.environment) = lower(?1)) or (lower(?1) = 'all')) and " +
-            "lower(e.application) like lower(concat('%', ?2,'%'))")
+            "lower(e.application) like lower(concat('%', ?2,'%')) and " +
+                "(coalesce(e.shelved, 0) = 0)")
     Page<Event> findByEnvironmentAndApplication(String environment, String application, Pageable pageable);
 }
