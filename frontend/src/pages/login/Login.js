@@ -26,8 +26,13 @@ const Login = () => {
         const { data } = resp
         if (data) {
           // console.log(data)
-          // console.log(data.accessToken)
+          // console.log(data.email)
+          // console.log(data.firstName)
+          // console.log(data.token)
+
           localStorage.setItem('appToken', data.accessToken)
+          localStorage.setItem('firstName', data.firstName)
+          localStorage.setItem('userToken', data.token)
           setLoading(false)
           history.push('/events')
 

@@ -1,7 +1,12 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap);
+@import url(
+  https://fonts.googleapis.com/css?family=Roboto:300,
+  400,
+  500,
+  700&display=swap
+);
 
 * {
-  font-family: "Roboto", sans-serif
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -36,9 +41,9 @@ table td {
   text-align: center;
 }
 
-.modal-90w{
+.modal-90w {
   width: 90%;
-  max-width: none!important;
+  max-width: none !important;
 }
 
 @media screen and (max-width: 800px) {
@@ -49,7 +54,7 @@ table td {
   table caption {
     font-size: 1.3em;
   }
-  
+
   table thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -60,20 +65,20 @@ table td {
     position: absolute;
     width: 1px;
   }
-  
+
   table tr {
     border-bottom: 3px solid #ddd;
     display: block;
-    margin-bottom: .625em;
+    margin-bottom: 0.625em;
   }
-  
+
   table td {
     border-bottom: 1px solid #ddd;
     display: block;
-    font-size: .8em;
+    font-size: 0.8em;
     text-align: right !important;
   }
-  
+
   table td::before {
     /*
     * aria-label has no advantage, it won't be read inside a table
@@ -84,8 +89,23 @@ table td {
     font-weight: bold;
     text-transform: uppercase;
   }
-  
+
   table td:last-child {
     border-bottom: 0;
   }
+}
+
+.button-logoff {
+  text-align: right;
+}
+
+.token-user {
+  text-align: center;
+}
+.row-header {
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #212529;
 }

@@ -5,8 +5,8 @@ const API = axios.create({
   headers: { 'Authorization': appToken }
 });
 
-const getEventos = async ({linesPerPage=10, orderByField="id", orderByDirection="ASC", pageNo=0}, paramsState) => {
-  const { data } = await API.post(`/events/findEvents?linesPerPage=${linesPerPage}&orderByField=${orderByField}&=${orderByDirection}&pageNo=${pageNo}`,paramsState);
+const getEventos = async ({ linesPerPage = 10, orderByField = "id", orderByDirection = "ASC", pageNo = 0 }, paramsState) => {
+  const { data } = await API.post(`/events/findEvents?linesPerPage=${linesPerPage}&orderByField=${orderByField}&=${orderByDirection}&pageNo=${pageNo}`, paramsState);
   return data;
 };
 
@@ -22,11 +22,11 @@ const getEventById = async (eventID) => {
 };
 
 const shelveEvents = async (eventIds) => {
-    await API.post(`/events/shelveMany`, eventIds);
+  await API.post(`/events/shelveMany`, eventIds);
 };
 
 const deleteEvents = async (eventIds) => {
-    await API.post(`/events/deleteMany`, eventIds);
+  await API.post(`/events/deleteMany`, eventIds);
 };
 
 export { getEventos, getList, getEventById, shelveEvents, deleteEvents };
