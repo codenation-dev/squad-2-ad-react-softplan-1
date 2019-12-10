@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
+import { history } from '../history'
+
 
 
 const Header = () => {
 
-  const token = localStorage.appToken;
+  const redirect = () => {
+    history.push("/")
+  }
 
   const Logoff = () => {
     localStorage.clear();
+    redirect();
+    return true
   }
+
+
 
   return (
     <Container className="main-header" fluid="true">
@@ -25,7 +33,9 @@ const Header = () => {
         </Col>
 
         <Col className="button-logoff" >
-          <Button variant="warning" onClick={Logoff}> <FaUserCircle className="user-icon" /> Logoff</Button>
+          <Form>
+            <Button type="submit" variant="warning" onClick={Logoff}> <FaUserCircle className="user-icon" /> Logoff</Button>
+          </Form>
         </Col>
       </Row>
 
