@@ -110,6 +110,12 @@ table td {
   }
 }
 
+/*
+  ========================================
+  Header
+  ========================================
+*/
+
 .button-logoff {
   margin: 0 auto;
   display: flex;
@@ -118,7 +124,10 @@ table td {
 }
 
 .token-user {
+  display: flex;
+  flex-wrap: wrap;
   text-align: left;
+  word-wrap: break-word;
 }
 .row-header {
   padding: 10px;
@@ -126,6 +135,11 @@ table td {
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: #212529;
+}
+
+p { 
+  width: 13em; 
+  word-wrap: break-word; 
 }
 
 
@@ -193,4 +207,18 @@ footer {
 
 footer small {
   font-weight: 500;
+}
+
+/*
+  ========================================
+  Pagination
+  ========================================
+*/
+
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: .25rem;
+  flex-wrap: wrap;
 }

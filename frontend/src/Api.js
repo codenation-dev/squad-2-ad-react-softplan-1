@@ -30,7 +30,7 @@ const deleteEvents = async eventIds => {
 };
 
 const getEventById = async eventID => {
-  const { data } = API.get(`/events/${eventID}`);
+  const { data } = await API.get(`/events/${eventID}`);
   return data;
 };
 

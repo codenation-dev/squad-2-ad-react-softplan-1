@@ -22,10 +22,10 @@ const Header = () => {
       <Row className="row-header">
         <Col xs={12} lg={8}>
           <h5>Bem vindo: {localStorage.firstName}.</h5>
-          <h5 className="token-user">Seu token Ã©: {localStorage.userToken}.</h5>
+          <h5 className="token-user">Seu token é: <p>{localStorage.userToken}.</p></h5>
         </Col>
   
-        <Col xs={6} lg={4} className="button-logoff" >
+        <Col className="button-logoff" >
           <Form>
             <Button type="submit" variant="warning" onClick={Logoff}> <FaUserCircle className="user-icon" /> Logoff</Button>
           </Form>
