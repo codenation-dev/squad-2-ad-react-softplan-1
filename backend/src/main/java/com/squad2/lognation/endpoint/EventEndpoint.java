@@ -29,7 +29,7 @@ public class EventEndpoint {
             @Valid @RequestBody(required=false) SearchCriteriaDto searchCriteriaDto
     ) {
 
-        EnvironmentEnum environment = EnvironmentEnum.PRODUCTION;
+        EnvironmentEnum environment = EnvironmentEnum.ALL;
         FilterKeyEnum filterKey = FilterKeyEnum.NONE;
         String filterValue = "";
 

@@ -85,6 +85,10 @@ function List({ eventos, pagination, setPagination }) {
     setPagination(1, itensPerPage, orderByValue);
   };
 
+  function handleSelectAllByButton(evt) {
+    document.getElementById("selectAll").click();
+  }
+
   function handleSelectAll(evt) {
     if (!evt.target.checked) {
       setSelectedRows([]);
@@ -176,10 +180,13 @@ function List({ eventos, pagination, setPagination }) {
         <Form.Row>
           <Form.Group as={Col}>
             <ButtonToolbar>
-              <Button variant="secondary" onClick={handleDialogShelveShow}>
+            <Button id="btn-select-all" className="mr-2" variant="primary" onClick={handleSelectAllByButton}>
+                Select All
+              </Button>
+              <Button variant="secondary" className="mr-2" onClick={handleDialogShelveShow}>
                 Shelve items
               </Button>
-              <Button variant="danger" onClick={handleDialogDeleteShow}>
+              <Button variant="danger" className="mr-2" onClick={handleDialogDeleteShow}>
                 Delete items
               </Button>
             </ButtonToolbar>
@@ -191,7 +198,7 @@ function List({ eventos, pagination, setPagination }) {
             <tr>
               <th className="text-center align-middle">
                 <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" onChange={handleSelectAll} />
+                  <Form.Check id="selectAll" type="checkbox" onChange={handleSelectAll} />
                 </Form.Group>
               </th>
               <th className="text-center align-middle">Environment</th>

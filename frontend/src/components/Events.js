@@ -84,7 +84,7 @@ class Events extends React.Component {
       
       <Container fluid="true">
           <Header />
-          <Filter list={this.state.list} setParams={this.setParams} />
+          <Filter setParams={this.setParams} />
           
           <BlockUi tag="div" blocking={this.state.isLoading} keepInView>
             <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} /> 

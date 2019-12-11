@@ -52,7 +52,16 @@ table td {
   max-width: none !important;
 }
 
+#btn-select-all{
+  display: none;
+}
+
 @media screen and (max-width: 800px) {
+
+  #btn-select-all{
+    display: block;
+  }
+
   table {
     border: 0;
   }

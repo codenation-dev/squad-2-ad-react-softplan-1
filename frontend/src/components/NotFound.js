@@ -1,11 +1,14 @@
 import React from 'react';
+import {
+  Container
+} from "react-bootstrap";
 
 const NotFound = () => {
   return (
     <div className="box-login">
-
-      <h1>Não Encontrado 404</h1>
-
+      <Container>
+        <img src="https://codenation.dev/_nuxt/img/920fd5d.svg" />
+      </Container>
     </div >
   )
 }
