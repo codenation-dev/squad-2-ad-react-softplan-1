@@ -7,7 +7,7 @@ const Footer = () => {
    
       <small> &copy;Squad2 - Powered by Codenation &amp; Softplan
         <br />
-        <img src={logo} width="100" height="50" />
+        <img src={logo} width="100" height="50" alt="footer-img" />
         Diego Geremias -
         Diego Vissini -
         Eduardo Kraus Nunes -

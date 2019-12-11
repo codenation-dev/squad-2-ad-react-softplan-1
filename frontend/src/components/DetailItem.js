@@ -34,10 +34,10 @@ function DetailItem({ dataEvent }) {
           {dataEvent.level}
         </Alert>
 
-        <h6> Eventos </h6>
+        <h5> Eventos </h5>
         <p> { dataEvent.amount } </p>
 
-        <h6> Coletado por </h6>
+        <h5> Coletado por </h5>
         <p> { dataEvent.userToken } </p>
       </Col>
     </Row>

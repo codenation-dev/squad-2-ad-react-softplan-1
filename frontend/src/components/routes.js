@@ -4,7 +4,6 @@ import Login from '../pages/login';
 import Register from '../pages/register';
 import Forgot from '../pages/forgot';
 import Events from './Events';
-import Infinite from './Infinite';
 import NotFound from './NotFound';
 import Home from '../pages/home';
 import PrivateRoute from './PrivateRoute';
@@ -18,7 +17,6 @@ const Routes = () => (
       <Route component={Login} exact path="/" />
       <Route component={Register} exact path="/register" />
       <Route component={Forgot} exact path="/forgot" />
-      <Route component={Infinite} exact path="/infinite" />
       <Route component={Detail} exact path="/detail" />
       <PrivateRoute component={Home} exact path="/home" />
       <PrivateRoute component={Events} exact path="/events" />
