@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Col, Button, Card } from "react-bootstrap";
+import { Form, Col, Button, Card, Accordion } from "react-bootstrap";
 
 function Filter(props) {
 
@@ -44,7 +44,12 @@ function Filter(props) {
 
 
   return (
+    <Accordion defaultActiveKey="0">
     <Card>
+      <Accordion.Toggle as={Card.Header} className="text-dark" variant="link" eventKey="0">
+        <span className="btn-link">Filter</span>
+      </Accordion.Toggle>
+    <Accordion.Collapse eventKey="0">
       <Card.Body>
         <Form.Row style={{ color: "#000" }}>
           <Form.Group as={Col} controlId="formGridAmbiente">
@@ -76,7 +81,9 @@ function Filter(props) {
 
         </Form.Row>
       </Card.Body>
+      </Accordion.Collapse>
     </Card>
+    </Accordion>
   );
 }
 
