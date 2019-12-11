@@ -37,6 +37,12 @@ h6 {
   font-weight: 400;
 }
 
+/*
+  ========================================
+  List
+  ========================================
+*/
+
 table td {
   text-align: center;
 }
@@ -96,11 +102,14 @@ table td {
 }
 
 .button-logoff {
-  text-align: right;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .token-user {
-  text-align: center;
+  text-align: left;
 }
 .row-header {
   padding: 10px;
@@ -108,4 +117,71 @@ table td {
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: #212529;
+}
+
+
+/*
+  ========================================
+  Loader
+  ========================================
+*/
+
+#loader {
+  animation: animate 1.5s linear infinite;
+  clip: rect(0, 80px, 80px, 40px); 
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  left: calc(50% - 40px);
+  top: calc(50% - 40px);
+}
+@keyframes animate {
+  0% { 
+    transform: rotate(0deg)
+  }
+  100% { 
+    transform: rotate(220deg)
+  }
+}
+#loader:after {
+  animation: animate2 1.5s ease-in-out infinite;
+  clip: rect(0, 80px, 80px, 40px);
+  content:'';
+  border-radius: 50%; 
+  height: 80px;
+  width: 80px;
+  position: absolute; 
+} 
+@keyframes animate2 {
+  0% {
+    box-shadow: inset #fff 0 0 0 17px;
+    transform: rotate(-140deg);
+  }
+  50% {
+    box-shadow: inset #fff 0 0 0 2px;
+  }
+  100% {
+    box-shadow: inset #fff 0 0 0 17px;
+    transform: rotate(140deg);
+  }
+}
+
+/*
+  ========================================
+  Footer
+  ========================================
+*/
+
+footer {
+  position: relative;
+  /* position: absolute; */
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer small {
+  font-weight: 500;
 }

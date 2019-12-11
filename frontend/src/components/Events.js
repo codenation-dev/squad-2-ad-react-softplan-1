@@ -2,14 +2,16 @@ import React from "react";
 import { Filter } from "./Filter";
 import { List } from "./List";
 import { Container } from 'react-bootstrap';
-import { getEventos, getList } from "../Api";
+import { getEventos } from "../Api";
 import Header from "./Header";
+import BlockUi from 'react-block-ui';
+import 'react-block-ui/style.css';
 
 class Events extends React.Component {
 
   state = {
     eventos: [],
-    loading: true,
+    isLoading: true,
     error: null,
     pagination: {
       linesPerPage: 10,
@@ -27,7 +29,6 @@ class Events extends React.Component {
 
   getEventos = async (paginationState, paramsState) => {
     try {
-      console.log(this.state);
       const result = await getEventos(paginationState, paramsState);
       const eventos = result.content
       const pagination = {
@@ -39,9 +40,9 @@ class Events extends React.Component {
         totalElements: result.totalElements,
         number: result.number,
       }
-      this.setState({ eventos, pagination, paramsState, loading: false });
+      this.setState({ eventos, pagination, paramsState, isLoading: false });
     } catch (error) {
-      this.setState({ error, loading: false });
+      this.setState({ error, isLoading: false });
     }
   };
 
@@ -51,11 +52,12 @@ class Events extends React.Component {
     pagination.pageNo = page - 1;
     pagination.linesPerPage = itensPerPage;
     pagination.orderByField = orderBy;
-    this.setState({ pagination })
+    this.setState({ isLoading: true });
+    this.setState({ pagination });
     this.getEventos(pagination, paramsState);
   };
 
-  setParams = ({ environment, filterKey = null, filterValue = null }) => {
+  setParams = ({ environment, filterKey = null, filterValue = null }) => {    
     const paramsState = {}
     const paginationNew = this.state.pagination
     paginationNew.pageNo = 0
@@ -69,22 +71,28 @@ class Events extends React.Component {
     if (filterValue) {
       paramsState.filterValue = filterValue
     }
+    this.setState({ isLoading: true });
     this.getEventos(paginationNew, paramsState);
   }
 
   componentDidMount() {
-    //const list = getList();
-    //this.setState({list});
-    this.setState({ loading: true })
     this.getEventos(this.state.pagination);
   }
 
   render() {
     return (
+      
       <Container fluid="true">
-        <Header />
-        <Filter list={this.state.list} setParams={this.setParams} />
-        <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} />
+          <Header />
+          <Filter list={this.state.list} setParams={this.setParams} />
+          
+          <BlockUi tag="div" blocking={this.state.isLoading} keepInView>
+            <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} /> 
+          </BlockUi>
+          
+          {/* { this.state.isLoading ? <div id="loader"/> :  
+            <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} /> 
+          } */}
       </Container>
     )
   }

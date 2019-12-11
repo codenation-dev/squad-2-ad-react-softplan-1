@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Col, Button, Card, Accordion } from "react-bootstrap";
+import { Form, Col, Card, Accordion } from "react-bootstrap";
 
 function Filter(props) {
 
