@@ -21,7 +21,7 @@ const Header = () => {
 
       <Row className="row-header">
         <Col xs={12} lg={8}>
-          <h5>Bem vindo: {localStorage.firstName}.</h5>
+          <h5>Bem vindo : {localStorage.firstName}.</h5>
           <h5 className="token-user">Seu token :  <p className="token-number"> {localStorage.userToken}.</p></h5>
         </Col>
 
