@@ -11,21 +11,21 @@ LogNation é um projeto de trabalho final do curso AceleraDev React da Codenatio
 ## Squad 2
 Membros:
 
-	- Diego Geremias
-	[@Linkedin](https://www.linkedin.com/in/diegofgeremias/)
-	[Github](https://github.com/diegofgeremias)
+- Diego Geremias
+[Linkedin](https://www.linkedin.com/in/diegofgeremias)
+[Github](https://github.com/diegofgeremias)
 
-	- Diego Vissini
-	[@Linkedin](https://www.linkedin.com/in/diegovissini/)
-	[@Github](https://github.com/vissini)
+- Diego Vissini
+[Linkedin](https://www.linkedin.com/in/diegovissini)
+[Github](https://github.com/vissini)
 
-	- Eduardo Kraus Nunes
-	[@Linkedin](https://www.linkedin.com/in/edukrausnunes/)
-	[Github](https://github.com/ekrausnunes)
+- Eduardo Kraus Nunes
+[Linkedin](https://www.linkedin.com/in/edukrausnunes)
+[Github](https://github.com/ekrausnunes)
 
-	- Fernando Lima
-	[@Linkedin](https://www.linkedin.com/in/fernando-lima-it/)
-	[@Github](https://github.com/fernandojvlima)
+- Fernando Lima
+[Linkedin](https://www.linkedin.com/in/fernando-lima-it)
+[Github](https://github.com/fernandojvlima)
 
 
 ## Central de Erros - Objetivo
@@ -35,19 +35,19 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
 A arquitetura do projeto é formada por:
 
 ### Backend - API
-	- Criar endpoints para serem usados pelo frontend da aplicação;
-	- Criar um endpoint que será usado para gravar os logs de erro em um banco de dados relacional;
-	- A API deve ser segura, permitindo acesso apenas com um token de autenticação válido;
+- Criar endpoints para serem usados pelo frontend da aplicação;
+- Criar um endpoint que será usado para gravar os logs de erro em um banco de dados relacional;
+- A API deve ser segura, permitindo acesso apenas com um token de autenticação válido;
 
 ### Frontend
-	- Deve implementar as funcionalidades apresentadas nos wireframes;
-	- Deve ser acessada adequadamente tanto por navegadores desktop quanto mobile;
-	- Deve consumir a API do produto;
-	- Desenvolvida na forma de uma Single Page Application;
+- Deve implementar as funcionalidades apresentadas nos wireframes;
+- Deve ser acessada adequadamente tanto por navegadores desktop quanto mobile;
+- Deve consumir a API do produto;
+- Desenvolvida na forma de uma Single Page Application;
 
 ### Observações
-	- Se a aceleração tiver ênfase no backend (Java, Python, C#, Go, PHP, etc) a equipe deve obrigatoriamente implementar a API. A implementação do frontend é considerado um bônus importante
-	- Se a aceleração tiver ênfase em frontend (React, Vue, Angular, etc) a equipe deve obrigatoriamente implementar o frontend da aplicação e o backend pode ser substituido por uma aplicação mock. A implementação da API é considerado um bônus importante
+- Se a aceleração tiver ênfase no backend (Java, Python, C#, Go, PHP, etc) a equipe deve obrigatoriamente implementar a API. A implementação do frontend é considerado um bônus importante
+- Se a aceleração tiver ênfase em frontend (React, Vue, Angular, etc) a equipe deve obrigatoriamente implementar o frontend da aplicação e o backend pode ser substituido por uma aplicação mock. A implementação da API é considerado um bônus importante
 
 ### Wireframes
 Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a aplicação deverá ter, porém o time terá total liberdade para definir os detalhes de implementação e estratégia a ser utilizada no desenvolvimento.
@@ -62,68 +62,68 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 
 ### Features
 
-	- Frontend:
+#### Frontend:
+
+- Consome endpoints; 
+
+- Cadastro de usuário por nome, e-mail e senha;
+
+- Login de usuário por e-mail e senha;
+
+- Esqueci a senha envio de uma nova por e-mail;
+
+- Autenticação de usuário por meio de token;
+
+- Filtro da lista de eventos separados por ambiente (Production, Homolog e Development);
+
+- Ordenação dos eventos por level e quantidade de ocorrência;
+
+- Busca de eventos por level, descrição e origem;
+
+- Possibilidade de arquivar e deletar eventos;
+
+- Visualizar os detalhes de um evento;
+
+- 404 (não encontrada);
+
+- Responsivo;
+
 	
-		- Consome endpoints; 
+#### Backend:
 
-		- Cadastro de usuário por nome, e-mail e senha;
+- Endpoints para serem usados pelo frontend da aplicação;
 
-		- Login de usuário por e-mail e senha;
+- Banco de dados MySQL;
 
-		- Esqueci a senha envio de uma nova por e-mail;
-
-		- Autenticação de usuário por meio de token;
-
-		- Filtro da lista de eventos separados por ambiente (Production, Homolog e Development);
-
-		- Ordenação dos eventos por level e quantidade de ocorrência;
-
-		- Busca de eventos por level, descrição e origem;
-
-		- Possibilidade de arquivar e deletar eventos;
-		
-		- Visualizar os detalhes de um evento;
-
-		- 404 (não encontrada);
-
-		- Responsivo;
-
-	
-	- Backend:
-	
-		- Endpoints para serem usados pelo frontend da aplicação;
-
-		- Banco de dados MySQL;
-
-		- Token de autenticação;
+- Token de autenticação;
 
 ### Built With:
 
-	- GitHub (Controle de Versão);
-	
-	- Trello (Gerenciamento do Projeto);
-	
-	- Whereby (Reuniões Online);
+- GitHub (Controle de Versão);
 
-	- Back
-		- Spring;
-		
-		- Java;
-		
-		- MySQL;
-		
-		- Heroku;
+- Trello (Gerenciamento do Projeto);
 
-	- Front
-		- React;
-		
-		- Javascript;
-		
-		- Axios;
-		
-		- HTML;
-		
-		- CSS;
-	
-		- React-Bootstrap;
+- Whereby (Reuniões Online);
+
+-Back: 
+- Spring;
+
+- Java;
+
+- MySQL;
+
+- Heroku;
+
+Front:
+- React;
+
+- Javascript;
+
+- Axios;
+
+- HTML;
+
+- CSS;
+
+- React-Bootstrap;
 		
