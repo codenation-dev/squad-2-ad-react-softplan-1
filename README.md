@@ -12,19 +12,19 @@ LogNation é um projeto de trabalho final do curso AceleraDev React da Codenatio
 Membros:
 
 - Diego Geremias
-[Linkedin](https://www.linkedin.com/in/diegofgeremias)
+[Linkedin](https://www.linkedin.com/in/diegofgeremias) /
 [Github](https://github.com/diegofgeremias)
 
 - Diego Vissini
-[Linkedin](https://www.linkedin.com/in/diegovissini)
+[Linkedin](https://www.linkedin.com/in/diegovissini) /
 [Github](https://github.com/vissini)
 
 - Eduardo Kraus Nunes
-[Linkedin](https://www.linkedin.com/in/edukrausnunes)
+[Linkedin](https://www.linkedin.com/in/edukrausnunes) /
 [Github](https://github.com/ekrausnunes)
 
 - Fernando Lima
-[Linkedin](https://www.linkedin.com/in/fernando-lima-it)
+[Linkedin](https://www.linkedin.com/in/fernando-lima-it) /
 [Github](https://github.com/fernandojvlima)
 
 
