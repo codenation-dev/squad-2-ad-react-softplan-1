@@ -12,10 +12,10 @@ function DetailItem({ dataEvent }) {
     </Row>
     <Row>
       <Col xs={12} lg={8}>
-        <h5> Título </h5>
+        <h5> Title </h5>
         <p>{ dataEvent.title }</p>
 
-        <h5> Detalhes </h5>
+        <h5> Details </h5>
         <p>{ dataEvent.details }</p>
       </Col>
 
@@ -34,10 +34,10 @@ function DetailItem({ dataEvent }) {
           {dataEvent.level}
         </Alert>
 
-        <h5> Eventos </h5>
+        <h5> Events </h5>
         <p> { dataEvent.amount } </p>
 
-        <h5> Coletado por </h5>
+        <h5> Origin </h5>
         <p> { dataEvent.userToken } </p>
       </Col>
     </Row>
