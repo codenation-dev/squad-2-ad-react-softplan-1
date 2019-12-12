@@ -115,7 +115,6 @@ const Login = () => {
       </Formik>
       <Link to="/forgot"><p className="forgot-link"> Forgot your password ?</p></Link>
       <Link to="/register"><p className="register-link">Don't you have an account? Get started</p></Link>
-
     </div >
   )
 }
