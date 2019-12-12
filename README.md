@@ -1,4 +1,4 @@
-### !LogNation
+## LogNation
 
 LogNation é uma plataforma que tem como objetivo principal centralizar logs (eventos) dos sistemas em um único local, para que seja possível fazer o gerenciamento de forma fácil e rápida.
 
@@ -12,20 +12,20 @@ LogNation é um projeto de trabalho final do curso AceleraDev React da Codenatio
 Membros:
 
 	- Diego Geremias
-	[Linkedin](https://www.linkedin.com/in/diegofgeremias/)
+	[@Linkedin](https://www.linkedin.com/in/diegofgeremias/)
 	[Github](https://github.com/diegofgeremias)
 
 	- Diego Vissini
-	[Linkedin](https://www.linkedin.com/in/diegovissini/)
-	[Github](https://github.com/vissini)
+	[@Linkedin](https://www.linkedin.com/in/diegovissini/)
+	[@Github](https://github.com/vissini)
 
 	- Eduardo Kraus Nunes
-	[Linkedin](https://www.linkedin.com/in/edukrausnunes/)
+	[@Linkedin](https://www.linkedin.com/in/edukrausnunes/)
 	[Github](https://github.com/ekrausnunes)
 
 	- Fernando Lima
-	[Linkedin](https://www.linkedin.com/in/fernando-lima-it/)
-	[Github](https://github.com/fernandojvlima)
+	[@Linkedin](https://www.linkedin.com/in/fernando-lima-it/)
+	[@Github](https://github.com/fernandojvlima)
 
 
 ## Central de Erros - Objetivo
@@ -34,22 +34,22 @@ Em projetos modernos é cada vez mais comum o uso de arquiteturas baseadas em se
 
 A arquitetura do projeto é formada por:
 
-## Backend - API
+### Backend - API
 	- Criar endpoints para serem usados pelo frontend da aplicação;
 	- Criar um endpoint que será usado para gravar os logs de erro em um banco de dados relacional;
 	- A API deve ser segura, permitindo acesso apenas com um token de autenticação válido;
 
-## Frontend
+### Frontend
 	- Deve implementar as funcionalidades apresentadas nos wireframes;
 	- Deve ser acessada adequadamente tanto por navegadores desktop quanto mobile;
 	- Deve consumir a API do produto;
 	- Desenvolvida na forma de uma Single Page Application;
 
-## Observações
+### Observações
 	- Se a aceleração tiver ênfase no backend (Java, Python, C#, Go, PHP, etc) a equipe deve obrigatoriamente implementar a API. A implementação do frontend é considerado um bônus importante
 	- Se a aceleração tiver ênfase em frontend (React, Vue, Angular, etc) a equipe deve obrigatoriamente implementar o frontend da aplicação e o backend pode ser substituido por uma aplicação mock. A implementação da API é considerado um bônus importante
 
-## Wireframes
+### Wireframes
 Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a aplicação deverá ter, porém o time terá total liberdade para definir os detalhes de implementação e estratégia a ser utilizada no desenvolvimento.
 
 <img width="1028" alt="1-cadastro" src="https://codenation-challenges.s3-us-west-1.amazonaws.com/central-erros/1-cadastro.png">
@@ -60,7 +60,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 <img width="1026" alt="6-filtro" src="https://codenation-challenges.s3-us-west-1.amazonaws.com/central-erros/6-filtro.png">
 <img width="1032" alt="7-detalhes" src="https://codenation-challenges.s3-us-west-1.amazonaws.com/central-erros/7-detalhes.png">
 
-## Features
+### Features
 
 	- Frontend:
 	
@@ -97,7 +97,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 
 		- Token de autenticação;
 
-## Built With:
+### Built With:
 
 	- GitHub (Controle de Versão);
 	
@@ -124,6 +124,6 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 		- HTML;
 		
 		- CSS;
-		
+	
 		- React-Bootstrap;
 		
