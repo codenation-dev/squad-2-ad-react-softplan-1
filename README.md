@@ -12,19 +12,19 @@ LogNation é um projeto de trabalho final do curso AceleraDev React da Codenatio
 Membros:
 
 - Diego Geremias
-[Linkedin](https://www.linkedin.com/in/diegofgeremias) /
+[Linkedin](https://www.linkedin.com/in/diegofgeremias)/
 [Github](https://github.com/diegofgeremias)
 
 - Diego Vissini
-[Linkedin](https://www.linkedin.com/in/diegovissini) /
+[Linkedin](https://www.linkedin.com/in/diegovissini)/
 [Github](https://github.com/vissini)
 
 - Eduardo Kraus Nunes
-[Linkedin](https://www.linkedin.com/in/edukrausnunes) /
+[Linkedin](https://www.linkedin.com/in/edukrausnunes)/
 [Github](https://github.com/ekrausnunes)
 
 - Fernando Lima
-[Linkedin](https://www.linkedin.com/in/fernando-lima-it) /
+[Linkedin](https://www.linkedin.com/in/fernando-lima-it)/
 [Github](https://github.com/fernandojvlima)
 
 
@@ -72,7 +72,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 
 - Esqueci a senha envio de uma nova por e-mail;
 
-- Autenticação de usuário por meio de token;
+- Autenticação de usuário JWT;
 
 - Filtro da lista de eventos separados por ambiente (Production, Homolog e Development);
 
@@ -95,7 +95,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 
 - Banco de dados MySQL;
 
-- Token de autenticação;
+- JWT;
 
 ## Built With:
 
