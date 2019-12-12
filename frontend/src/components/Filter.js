@@ -73,7 +73,7 @@ function Filter(props) {
         <Accordion.Collapse eventKey="0">
           <Card.Body>
             <Form.Row style={{ color: "#000" }}>
-              <Form.Group as={Col} controlId="formGridAmbiente">
+              <Form.Group as={Col} xs="12" md="4" controlId="formGridAmbiente">
                 <Form.Label>Environment:</Form.Label>
                 <Form.Control
                   onChange={e => FilterByEnvironment(e)}
@@ -87,7 +87,7 @@ function Filter(props) {
                   ))}
                 </Form.Control>
               </Form.Group>
-              <Form.Group as={Col} controlId="formGridAmbiente">
+              <Form.Group as={Col} xs="12" md="4" controlId="formGridAmbiente">
                 <Form.Label>Field search:</Form.Label>
                 <Form.Control
                   onChange={e => FilterByField(e, "field")}
@@ -103,6 +103,7 @@ function Filter(props) {
               </Form.Group>
               <Form.Group
                 as={Col}
+                xs="12" md="4"
                 onChange={e => FilterByField(e, "value")}
                 controlId="formGridAmbiente"
               >

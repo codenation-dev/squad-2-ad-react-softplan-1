@@ -154,7 +154,7 @@ function List({ eventos, pagination, setPagination }) {
     <Card className="mt-3">
       <Card.Body>
         <Form.Row style={{ color: "#000" }}>
-          <Form.Group as={Col} controlId="formGridAmbiente">
+          <Form.Group as={Col} xs="12" md="6" controlId="formGridAmbiente">
             <Form.Label>Itens per Page</Form.Label>
             <Form.Control
               onChange={e => SetNumbersPerPage(e)}
@@ -168,7 +168,7 @@ function List({ eventos, pagination, setPagination }) {
               <option value="50">50</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group as={Col} controlId="formGridAmbiente">
+          <Form.Group as={Col} xs="12" md="6" controlId="formGridAmbiente">
             <Form.Label>Order By:</Form.Label>
             <Form.Control onChange={e => setOrder(e)} as="select">
               <option value="amount">Events</option>
@@ -178,16 +178,16 @@ function List({ eventos, pagination, setPagination }) {
           </Form.Group>
         </Form.Row>
         <Form.Row>
-          <Form.Group as={Col}>
+          <Form.Group as={Col} xs="12">
             <ButtonToolbar>
-            <Button id="btn-select-all" className="mr-2" variant="primary" onClick={handleSelectAllByButton}>
-                Select All
-              </Button>
-              <Button variant="secondary" className="mr-2" onClick={handleDialogShelveShow}>
+              <Button variant="secondary" className="button-tolbar mr-2 mb-2" onClick={handleDialogShelveShow}>
                 Shelve items
               </Button>
-              <Button variant="danger" className="mr-2" onClick={handleDialogDeleteShow}>
+              <Button variant="danger" className="button-tolbar mr-2 mb-2" onClick={handleDialogDeleteShow}>
                 Delete items
+              </Button>
+              <Button id="btn-select-all" className="button-tolbar mr-2 mb-2" variant="primary" onClick={handleSelectAllByButton}>
+                Select All
               </Button>
             </ButtonToolbar>
           </Form.Group>
@@ -196,25 +196,26 @@ function List({ eventos, pagination, setPagination }) {
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-              <th className="text-center align-middle">
-                <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check id="selectAll" type="checkbox" onChange={handleSelectAll} />
+              <th className="text-center align-middle" style={{ width: "50px", height: "50px" }}>
+                <Form.Group controlId="formBasicCheckbox" className="pl-3" >
+                  <Form.Check.Input id="selectAll" className="big-checkbox" type="checkbox" onChange={handleSelectAll} />
                 </Form.Group>
               </th>
-              <th className="text-center align-middle">Environment</th>
-              <th className="text-center align-middle">Level</th>
+              <th className="text-center align-middle" style={{ width: "160px" }}>Environment</th>
+              <th className="text-center align-middle" style={{ width: "120px" }}>Level</th>
               <th className="text-center align-middle">Log</th>
-              <th className="text-center align-middle">Amount</th>
+              <th className="text-center align-middle" style={{ width: "120px" }}>Amount</th>
             </tr>
           </thead>
           <tbody>
             {eventos.map(dt => (
               <React.Fragment key={dt.id}>
                 <tr onClick={event => showCollapse(event, dt.id)}>
-                  <td data-label="Select" className="align-middle">
-                    <Form.Group controlId="formBasicCheckbox">
-                      <Form.Check
+                  <td data-label="Select" className="align-middle" style={{ height: "40px" }}>
+                    <Form.Group controlId="formBasicCheckbox" className="pl-3">
+                      <Form.Check.Input
                         type="checkbox"
+                        className="big-checkbox"
                         value={dt.id}
                         checked={isRowSelected(dt.id)}
                         onChange={handleSelectRow}
@@ -242,8 +243,8 @@ function List({ eventos, pagination, setPagination }) {
                     </span>
                   </td>
                   <td data-label="Log" className="align-middle">
-                    <p>{dt.title}</p>
-                    <p>{dt.ipOrigin}</p>
+                    <span>{dt.title}</span><br/>
+                    <span>{dt.ipOrigin}</span>
                   </td>
                   <td data-label="Amount" className="align-middle">
                     {dt.amount}
