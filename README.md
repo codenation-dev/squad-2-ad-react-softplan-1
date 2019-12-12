@@ -1,4 +1,4 @@
-## LogNation
+# LogNation
 
 LogNation é uma plataforma que tem como objetivo principal centralizar logs (eventos) dos sistemas em um único local, para que seja possível fazer o gerenciamento de forma fácil e rápida.
 
@@ -60,9 +60,9 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 <img width="1026" alt="6-filtro" src="https://codenation-challenges.s3-us-west-1.amazonaws.com/central-erros/6-filtro.png">
 <img width="1032" alt="7-detalhes" src="https://codenation-challenges.s3-us-west-1.amazonaws.com/central-erros/7-detalhes.png">
 
-### Features
+## Features
 
-#### Frontend:
+### Frontend:
 
 - Consome endpoints; 
 
@@ -89,7 +89,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 - Responsivo;
 
 	
-#### Backend:
+### Backend:
 
 - Endpoints para serem usados pelo frontend da aplicação;
 
@@ -97,7 +97,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 
 - Token de autenticação;
 
-### Built With:
+## Built With:
 
 - GitHub (Controle de Versão);
 
@@ -105,7 +105,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 
 - Whereby (Reuniões Online);
 
--Back: 
+### Back: 
 - Spring;
 
 - Java;
@@ -114,7 +114,7 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 
 - Heroku;
 
-Front:
+### Front:
 - React;
 
 - Javascript;
