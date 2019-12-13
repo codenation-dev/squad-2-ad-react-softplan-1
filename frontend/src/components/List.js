@@ -126,6 +126,9 @@ function List({ eventos, pagination, setPagination }) {
   };
 
   const showInfo = () => {
+    if(pagination.totalElements === 0){
+      return '';
+    }
     const start =
       pagination.number === 0
         ? 1
@@ -208,7 +211,7 @@ function List({ eventos, pagination, setPagination }) {
             </tr>
           </thead>
           <tbody>
-            {eventos.map(dt => (
+            {eventos.length>0?eventos.map(dt => (
               <React.Fragment key={dt.id}>
                 <tr onClick={event => showCollapse(event, dt.id)}>
                   <td data-label="Select" className="align-middle" style={{ height: "40px" }}>
@@ -251,7 +254,7 @@ function List({ eventos, pagination, setPagination }) {
                   </td>
                 </tr>
               </React.Fragment>
-            ))}
+            )):<tr><td colSpan="5">No Records Found</td></tr>}
           </tbody>
         </Table>
         <Row>
