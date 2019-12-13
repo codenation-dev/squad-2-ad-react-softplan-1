@@ -19,7 +19,7 @@ const Forgot = () => {
 
   const handleSubmit = values => {
 
-    axios.post('https://lognation.herokuapp.com/api/auth/forgotPassword', values)
+    axios.post(`https://lognation.herokuapp.com/api/auth/forgotPassword?email=${values.email}`)
       .then(resp => {
         const { data } = resp
         if (data) {
@@ -46,13 +46,13 @@ const Forgot = () => {
 
   return (
     <div className="Forgot-Container">
-      <div className="Forgot-Title"><h1>Forgot my Id</h1></div>
+      <div className="Forgot-Title"><h1>Forgot my password</h1></div>
 
       {showError &&
         <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
           <Alert.Heading>Sorry!</Alert.Heading>
           <p>
-            User not found!
+            Invalid credentials!
           </p>
         </Alert>
       }
