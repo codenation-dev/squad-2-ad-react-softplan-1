@@ -1,11 +1,8 @@
 package com.squad2.lognation.core.mail;
 
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.MimeMailMessage;
-
 public interface EmailService {
 
-    void sendEmail(SimpleMailMessage message);
+    void sendEmail(String to, String subject, String plainText);
 
-    void sendHtmlEmail(MimeMailMessage message);
+    void sendHtmlEmail(String to, String subject, String htmlText);
 }

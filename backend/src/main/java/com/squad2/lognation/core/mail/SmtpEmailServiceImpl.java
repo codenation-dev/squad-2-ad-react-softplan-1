@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.util.Date;
 
 public class SmtpEmailServiceImpl implements EmailService {
@@ -25,21 +27,34 @@ public class SmtpEmailServiceImpl implements EmailService {
     private static final Logger logger = LoggerFactory.getLogger(SmtpEmailServiceImpl.class);
 
     @Override
-    public void sendEmail(SimpleMailMessage message) {
+    public void sendEmail(String to, String subject, String plainText) {
         logger.info("Simple mail message sending...");
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
         message.setFrom(sender);
+        message.setSubject(subject);
         message.setSentDate(new Date(System.currentTimeMillis()));
+        message.setText(plainText);
         simpleMailSender.send(message);
         logger.info("Message sent!");
     }
 
     @Override
-    public void sendHtmlEmail(MimeMailMessage message) {
+    public void sendHtmlEmail(String to, String subject, String htmlText) {
         logger.info("Html mail message sending...");
-        message.setFrom(sender);
-        message.setSentDate(new Date(System.currentTimeMillis()));
-        mimeMailSender.send(message.getMimeMessage());
-        logger.info("Message sent!");
+        MimeMessage message = mimeMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
+            messageHelper.setTo(to);
+            messageHelper.setFrom(sender);
+            messageHelper.setSubject(subject);
+            messageHelper.setSentDate(new Date(System.currentTimeMillis()));
+            messageHelper.setText(htmlText, true);
+            mimeMailSender.send(message);
+            logger.info("Message sent!");
+        } catch (MessagingException e) {
+            logger.info("Failed to send html email: " + e.getMessage());
+        }
     }
 
 }
