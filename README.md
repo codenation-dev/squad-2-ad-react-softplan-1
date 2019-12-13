@@ -91,6 +91,8 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 	
 ### Backend:
 
+- Documentação em [Lognation API](https://lognation.herokuapp.com/swagger-ui.html#/)
+
 - Endpoints para serem usados pelo frontend da aplicação;
 
 - Banco de dados MySQL;
@@ -106,15 +108,15 @@ Os wireframes a seguir servem para ilustrar as funcionalidades básicas que a ap
 - Whereby (Reuniões Online);
 
 ### Back: 
-- Spring;
 
-- Java;
+- Java Springboot;
 
 - MySQL;
 
 - Heroku;
 
 ### Front:
+
 - React;
 
 - Javascript;
