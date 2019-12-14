@@ -17,6 +17,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
 
+  //Remover a logica de chamar o endpoint para dentro do arquivo API
   const handleSubmit = async (values) => {
     setLoading(true)
 

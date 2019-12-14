@@ -7,6 +7,7 @@ import Header from "./Header";
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
 
+//Rever para mudar para hooks
 class Events extends React.Component {
 
   state = {

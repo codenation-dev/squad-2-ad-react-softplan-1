@@ -3,6 +3,8 @@ import {
   Container, Row, Col
 } from "react-bootstrap";
 
+
+//Mover para o Pages
 const NotFound = () => {
   return (
     <div className="box-login">
