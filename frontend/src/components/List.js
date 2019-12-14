@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import Detail from "./Detail";
 import { shelveEvents, deleteEvents } from "../Api";
+import PaginationList from './PaginationList';
 
 function List({ eventos, pagination, setPagination }) {
   const [itensPerPage, setItensPerPage] = useState();
@@ -124,28 +125,7 @@ function List({ eventos, pagination, setPagination }) {
     setSelectedRows([]);
   };
 
-  const showInfo = () => {
-    if(pagination.totalElements === 0){
-      return '';
-    }
-    const start =
-      pagination.number === 0
-        ? 1
-        : pagination.number * pagination.linesPerPage + 1;
-
-    const end =
-      pagination.number === 0
-        ? pagination.linesPerPage
-        : (pagination.number + 1) * pagination.linesPerPage <
-          pagination.totalElements
-        ? (pagination.number + 1) * pagination.linesPerPage
-        : pagination.totalElements;
-
-    return `Showing ${start} to ${end}  of ${pagination.totalElements} records`;
-  };
-
   const showCollapse = (event, eventId) => {
-    //console.log(event.currentTarget);
     if (event.target.type !== "checkbox") {
       setEventIdSelected(eventId);
       handleShow();
@@ -162,8 +142,8 @@ function List({ eventos, pagination, setPagination }) {
               as="select"
               defaultValue={10}
             >
-              {/* Comentado pois com 5 itens na lista a paginação estrapola telas pequenas */}
-              {/* <option value="5">5</option> */}
+      
+              <option value="5">5</option>
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -256,12 +236,7 @@ function List({ eventos, pagination, setPagination }) {
           </tbody>
         </Table>
         <Row>
-          <Col lg={3} className="text-dark">
-            {showInfo()}
-          </Col>
-          <Col className="d-flex justify-content-lg-end">
-            <Pagination size="sm">{items}</Pagination>
-          </Col>
+          <PaginationList pagination={ pagination } items={ items }/>
         </Row>
 
       <Modal show={showUnselectedRows} onHide={handleCloseUnselectedRows}>
