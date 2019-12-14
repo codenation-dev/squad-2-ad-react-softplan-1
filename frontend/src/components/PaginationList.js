@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Pagination, Col } from "react-bootstrap";
 
 function PaginationList({ eventos, pagination, setPagination }) {
