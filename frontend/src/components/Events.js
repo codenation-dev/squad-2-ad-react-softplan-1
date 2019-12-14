@@ -1,5 +1,7 @@
 import React from "react";
 import { Filter } from "./Filter";
+import { CustomView } from "./CustomView";
+// import { ActionList } from "./ActionList";
 import { List } from "./List";
 import { Container, Card} from 'react-bootstrap';
 import { getEventos } from "../Api";
@@ -90,6 +92,8 @@ class Events extends React.Component {
           <BlockUi tag="div" blocking={this.state.isLoading} keepInView>
             <Card className="mt-3">
               <Card.Body>
+                <CustomView pagination={this.state.pagination} setPagination={this.setPagination}/>
+                {/* <ActionList pagination={this.state.pagination} setPagination={this.setPagination}/> */}
                 <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} /> 
               </Card.Body>
             </Card>
