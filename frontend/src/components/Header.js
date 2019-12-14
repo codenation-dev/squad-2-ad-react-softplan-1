@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
 import { Button, Form, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { history } from '../history'
