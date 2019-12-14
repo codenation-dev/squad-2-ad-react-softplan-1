@@ -35,7 +35,7 @@ const Login = () => {
           localStorage.setItem('firstName', data.firstName)
           localStorage.setItem('userToken', data.token)
           setLoading(false)
-          history.push('/events')
+          history.push('/dashboard')
 
         }
       })
