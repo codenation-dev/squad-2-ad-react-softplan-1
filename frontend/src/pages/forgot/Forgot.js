@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { history } from '../../history';
+import { handleForgot } from '../../Api';
 import './Forgot.css';
 import {
   ErrorMessage,
@@ -17,27 +17,23 @@ const Forgot = () => {
   const [showError, setShowError] = useState(false)
   const [showSuccess, setshowSuccess] = useState(false)
 
-  const handleSubmit = values => {
-
-    axios.post(`https://lognation.herokuapp.com/api/auth/forgotPassword?email=${values.email}`)
-      .then(resp => {
-        const { data } = resp
-        if (data) {
-          console.log(data)
-        }
-        setshowSuccess(true)
-        setTimeout(() => {
-          setshowSuccess(false)
-          history.push('/')
-        }, 5000);
-
-      })
-      .catch(() => {
-        setShowError(true)
-        setTimeout(() => {
-          setShowError(false)
-        }, 5000)
-      })
+  const handleSubmit = async values => {
+    console.log(values.email)
+    try {
+      const data = await handleForgot(values.email)
+      console.log(data)
+      setshowSuccess(true)
+      setTimeout(() => {
+        setshowSuccess(false)
+        history.push('/')
+      }, 5000);
+    }
+    catch (error) {
+      setShowError(true)
+      setTimeout(() => {
+        setShowError(false)
+      }, 5000)
+    }
   }
 
   const validations = yup.object().shape({
@@ -67,7 +63,7 @@ const Forgot = () => {
       }
 
       <Formik
-        initialValues={{}}
+        initialValues={{ email: "" }}
         onSubmit={handleSubmit}
         validationSchema={validations}
       >
