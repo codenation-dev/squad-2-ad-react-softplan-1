@@ -1,8 +1,9 @@
 import axios from "axios";
-const appToken = `Bearer ${localStorage.getItem("appToken")}`;
+
+const getToken = () => ({Authorization:`Bearer ${localStorage.getItem("appToken")}`})
+// const appToken = `Bearer ${localStorage.getItem("appToken")}`;
 const API = axios.create({
-  baseURL: "https://lognation.herokuapp.com/api",
-  headers: { Authorization: appToken }
+  baseURL: "https://lognation.herokuapp.com/api"
 });
 
 const getEventos = async (
@@ -14,33 +15,40 @@ const getEventos = async (
   },
   paramsState
 ) => {
+  const headers = getToken();
   const { data } = await API.post(
     `/events/findEvents?linesPerPage=${linesPerPage}&orderByField=${orderByField}&=${orderByDirection}&pageNo=${pageNo}`,
-    paramsState
+    paramsState, 
+    {headers}
   );
   return data;
 };
 
 const shelveEvents = async eventIds => {
-  await API.post(`/events/shelveMany`, eventIds);
+  const headers = getToken();
+  await API.post(`/events/shelveMany`, eventIds, {headers});
 };
 
 const deleteEvents = async eventIds => {
-  await API.post(`/events/deleteMany`, eventIds);
+  const headers = getToken();
+  await API.post(`/events/deleteMany`, eventIds, {headers});
 };
 
 const getEventById = async eventID => {
-  const { data } = await API.get(`/events/${eventID}`);
+  const headers = getToken();
+  const { data } = await API.get(`/events/${eventID}`, {headers});
   return data;
 };
 
 const getEnvironmentList = async () => {
-  const { data } = await API.get(`/environments`);
+  const headers = getToken();
+  const { data } = await API.get(`/environments`, {headers});
   return data;
 };
 
 const getFilterKeyList = async () => {
-  const { data } = await API.get(`/filterkeys`);
+  const headers = getToken();
+  const { data } = await API.get(`/filterkeys`, {headers});
   return data;
 };
 
