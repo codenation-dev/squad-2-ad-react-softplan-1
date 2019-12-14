@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Form, Col, Card, Accordion } from "react-bootstrap";
-import { getEnvironmentList, getFilterKeyList } from "./../Api";
+import React from "react";
+import { Form, Col } from "react-bootstrap";
 
 function CustomView({ pagination, setPagination }) {
 
