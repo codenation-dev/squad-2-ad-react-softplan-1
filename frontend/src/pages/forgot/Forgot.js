@@ -10,26 +10,30 @@ import {
   Field
 } from 'formik';
 import * as yup from 'yup';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert, Button, Spinner } from 'react-bootstrap';
 
 const Forgot = () => {
 
   const [showError, setShowError] = useState(false)
   const [showSuccess, setshowSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async values => {
     console.log(values.email)
     try {
+      setLoading(true)
       const data = await handleForgot(values.email)
-      console.log(data)
       setshowSuccess(true)
+      setLoading(false)
       setTimeout(() => {
         setshowSuccess(false)
+
         history.push('/')
       }, 5000);
     }
     catch (error) {
       setShowError(true)
+      setLoading(false)
       setTimeout(() => {
         setShowError(false)
       }, 5000)
@@ -81,7 +85,14 @@ const Forgot = () => {
             />
           </div>
           <div className="Btn-Div">
-            <Button className="Forgot-Btn" type="submit">Remind</Button>
+            <Button
+              className="Forgot-Btn"
+              type="submit"
+              disabled={loading}>
+              {loading && <span>Loading  </span>}
+              {loading && <Spinner animation="border" />}
+              {!loading && <span>Remind</span>}
+            </Button>
             <Link to="/"><Button variant="secondary" className="Back-Btn">Return</Button></Link>
           </div>
         </Form>
