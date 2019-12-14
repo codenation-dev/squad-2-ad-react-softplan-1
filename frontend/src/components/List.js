@@ -98,38 +98,65 @@ function List({ eventos, pagination, setPagination }) {
   };
 
   return (
-      <>
-        <Form.Row>
-          <Form.Group as={Col} xs="12">
-            <ButtonToolbar>
-              <Button variant="secondary" className="button-tolbar mr-2 mb-2" onClick={handleDialogShelveShow}>
-                Shelve items
-              </Button>
-              <Button variant="danger" className="button-tolbar mr-2 mb-2" onClick={handleDialogDeleteShow}>
-                Delete items
-              </Button>
-              <Button id="btn-select-all" className="button-tolbar mr-2 mb-2" variant="primary" onClick={handleSelectAllByButton}>
-                Select All
-              </Button>
-            </ButtonToolbar>
-          </Form.Group>
-        </Form.Row>
+    <>
+      <Form.Row>
+        <Form.Group as={Col} xs="12">
+          <ButtonToolbar>
+            <Button
+              variant="secondary"
+              className="button-tolbar mr-2 mb-2"
+              onClick={handleDialogShelveShow}
+            >
+              Shelve items
+            </Button>
+            <Button
+              variant="danger"
+              className="button-tolbar mr-2 mb-2"
+              onClick={handleDialogDeleteShow}
+            >
+              Delete items
+            </Button>
+            <Button
+              id="btn-select-all"
+              className="button-tolbar mr-2 mb-2"
+              variant="primary"
+              onClick={handleSelectAllByButton}
+            >
+              Select All
+            </Button>
+          </ButtonToolbar>
+        </Form.Group>
+      </Form.Row>
 
-        <Table striped bordered hover size="sm">
-          <thead>
-            <tr>
-              <th className="text-center align-middle" style={{ width: "50px", height: "50px" }}>
-                <Form.Group controlId="formBasicCheckbox" className="pl-3" >
-                  <Form.Check.Input id="selectAll" className="big-checkbox" type="checkbox" onChange={handleSelectAll} />
-                </Form.Group>
-              </th>
-              <th className="text-center align-middle" style={{ width: "160px" }}>Environment</th>
-              <th className="text-center align-middle" style={{ width: "120px" }}>Level</th>
-              <th className="text-center align-middle">Log</th>
-              <th className="text-center align-middle" style={{ width: "120px" }}>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th
+              className="text-center align-middle"
+              style={{ width: "50px", height: "50px" }}
+            >
+              <Form.Group controlId="formBasicCheckbox" className="pl-3">
+                <Form.Check.Input
+                  id="selectAll"
+                  className="big-checkbox"
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                />
+              </Form.Group>
+            </th>
+            <th className="text-center align-middle" style={{ width: "160px" }}>
+              Environment
+            </th>
+            <th className="text-center align-middle" style={{ width: "120px" }}>
+              Level
+            </th>
+            <th className="text-center align-middle">Log</th>
+            <th className="text-center align-middle" style={{ width: "120px" }}>
+              Amount
+            </th>
+          </tr>
+        </thead>
+        {/* <tbody>
             {eventos.length>0?eventos.map(dt => (
               <React.Fragment key={dt.id}>
                 <tr onClick={event => showCollapse(event, dt.id)}>
@@ -174,8 +201,8 @@ function List({ eventos, pagination, setPagination }) {
                 </tr>
               </React.Fragment>
             )):<tr><td colSpan="5">No Records Found</td></tr>}
-          </tbody>
-        </Table>
+          </tbody> */}
+      </Table>
 
       <Modal show={showUnselectedRows} onHide={handleCloseUnselectedRows}>
         <Modal.Header closeButton>

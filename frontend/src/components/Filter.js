@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form, Col, Card, Accordion } from "react-bootstrap";
 import { getEnvironmentList, getFilterKeyList } from "./../Api";
+import { Creators as Actions } from "./../store/ducks/events";
+import { useDispatch } from "react-redux";
 
 function Filter(props) {
+  const dispatch = useDispatch();
   const [environment, setEnvironment] = useState("");
   const [filterKey, setFilterKey] = useState("");
   const [filterValue, setFilterValue] = useState("");
@@ -21,7 +24,9 @@ function Filter(props) {
     if (filterValue) {
       paramsState.filterValue = filterValue;
     }
-    props.setParams(paramsState);
+
+    dispatch(Actions.changeParams(paramsState));
+    // props.setParams(paramsState);
   };
 
   // Verificar onde usa
@@ -69,7 +74,9 @@ function Filter(props) {
           variant="link"
           eventKey="0"
         >
-          <span className="btn-link" role="button">Search options</span>
+          <span className="btn-link" role="button">
+            Search options
+          </span>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
@@ -104,7 +111,8 @@ function Filter(props) {
               </Form.Group>
               <Form.Group
                 as={Col}
-                xs="12" md="4"
+                xs="12"
+                md="4"
                 onChange={e => FilterByField(e, "value")}
                 controlId="formGridAmbiente"
               >
