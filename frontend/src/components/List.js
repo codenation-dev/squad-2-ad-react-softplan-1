@@ -13,8 +13,6 @@ import Detail from "./Detail";
 import { shelveEvents, deleteEvents } from "../Api";
 
 function List({ eventos, pagination, setPagination }) {
-  const [itensPerPage, setItensPerPage] = useState();
-  const [orderBy, setOrderBy] = useState();
   const [selectedRows, setSelectedRows] = useState([]);
   const [show, setShow] = useState(false);
   const [eventIdSelected, setEventIdSelected] = useState(1);
@@ -84,13 +82,13 @@ function List({ eventos, pagination, setPagination }) {
 
   const handleShelveClick = async () => {
     await shelveEvents(selectedRows);
-    setPagination(1, itensPerPage, orderBy);
+    setPagination(1, pagination.linesPerPage, pagination.orderByField);
     setSelectedRows([]);
   };
 
   const handleDeleteClick = async () => {
     await deleteEvents(selectedRows);
-    setPagination(1, itensPerPage, orderBy);
+    setPagination(1, pagination.linesPerPage, pagination.orderByField);
     setSelectedRows([]);
   };
 
