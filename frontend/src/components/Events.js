@@ -1,7 +1,7 @@
 import React from "react";
 import { Filter } from "./Filter";
 import { List } from "./List";
-import { Container } from 'react-bootstrap';
+import { Container, Card} from 'react-bootstrap';
 import { getEventos } from "../Api";
 import Header from "./Header";
 import BlockUi from 'react-block-ui';
@@ -88,7 +88,11 @@ class Events extends React.Component {
           <Filter setParams={this.setParams} />
           
           <BlockUi tag="div" blocking={this.state.isLoading} keepInView>
-            <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} /> 
+            <Card className="mt-3">
+              <Card.Body>
+                <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} /> 
+              </Card.Body>
+            </Card>
           </BlockUi>
           
           {/* { this.state.isLoading ? <div id="loader"/> :  

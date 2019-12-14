@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Form,
-  Card,
   Pagination,
   Row,
   Col,
@@ -154,8 +153,7 @@ function List({ eventos, pagination, setPagination }) {
   };
 
   return (
-    <Card className="mt-3">
-      <Card.Body>
+      <>
         <Form.Row style={{ color: "#000" }}>
           <Form.Group as={Col} xs="12" md="6" controlId="formGridAmbiente">
             <Form.Label>Itens per Page</Form.Label>
@@ -265,7 +263,6 @@ function List({ eventos, pagination, setPagination }) {
             <Pagination size="sm">{items}</Pagination>
           </Col>
         </Row>
-      </Card.Body>
 
       <Modal show={showUnselectedRows} onHide={handleCloseUnselectedRows}>
         <Modal.Header closeButton>
@@ -330,7 +327,7 @@ function List({ eventos, pagination, setPagination }) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Card>
+    </>
   );
 }
 
