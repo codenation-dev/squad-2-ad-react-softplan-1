@@ -16,22 +16,6 @@ const Header = () => {
   }
 
   return (
-    // <Container className="main-header" fluid="true">
-
-    //   <Row className="row-header">
-    //     <Col xs={12} lg={8}>
-    //       <h5>Bem vindo: {localStorage.firstName}.</h5>
-    //       <h5 className="token-user">Seu token :  <p className="token-number"> {localStorage.userToken}.</p></h5>
-    //     </Col>
-
-    //     <Col className="button-logoff" >
-    //       <Form>
-    //         <Button type="submit" variant="warning" onClick={Logoff}> <FaUserCircle className="user-icon" /> Logoff</Button>
-    //       </Form>
-    //     </Col>
-    //   </Row>
-
-    // </Container >
     <>
       <Navbar id="nav-desktop" expand="lg" className="mb-3">
         <Navbar.Brand href="#home"><img

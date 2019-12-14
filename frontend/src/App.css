@@ -1,8 +1,5 @@
 @import url(
-  https://fonts.googleapis.com/css?family=Roboto:300,
-  400,
-  500,
-  700&display=swap
+  https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap
 );
 
 * {
@@ -260,4 +257,18 @@ footer small {
   list-style: none;
   border-radius: .25rem;
   flex-wrap: wrap;
+}
+
+/*
+  ========================================
+  Links
+  ========================================
+*/
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #a9b2b9;
 }
