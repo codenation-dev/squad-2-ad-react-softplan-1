@@ -54,24 +54,6 @@ function List({ eventos, pagination, setPagination }) {
     setShowDialogDelete(false);
   };
 
-  let items = [];
-
-  const setPage = page => {
-    setPagination(page, itensPerPage, orderBy);
-  };
-
-  for (let number = 1; number <= pagination.totalPages; number++) {
-    items.push(
-      <Pagination.Item
-        key={number}
-        active={number - 1 === pagination.number}
-        onClick={() => setPage(number)}
-      >
-        {number}
-      </Pagination.Item>
-    );
-  }
-
   function handleSelectAllByButton(evt) {
     document.getElementById("selectAll").click();
   }
@@ -112,28 +94,7 @@ function List({ eventos, pagination, setPagination }) {
     setSelectedRows([]);
   };
 
-  const showInfo = () => {
-    if(pagination.totalElements === 0){
-      return '';
-    }
-    const start =
-      pagination.number === 0
-        ? 1
-        : pagination.number * pagination.linesPerPage + 1;
-
-    const end =
-      pagination.number === 0
-        ? pagination.linesPerPage
-        : (pagination.number + 1) * pagination.linesPerPage <
-          pagination.totalElements
-        ? (pagination.number + 1) * pagination.linesPerPage
-        : pagination.totalElements;
-
-    return `Showing ${start} to ${end}  of ${pagination.totalElements} records`;
-  };
-
   const showCollapse = (event, eventId) => {
-    //console.log(event.currentTarget);
     if (event.target.type !== "checkbox") {
       setEventIdSelected(eventId);
       handleShow();
@@ -219,14 +180,6 @@ function List({ eventos, pagination, setPagination }) {
             )):<tr><td colSpan="5">No Records Found</td></tr>}
           </tbody>
         </Table>
-        <Row>
-          <Col lg={3} className="text-dark">
-            {showInfo()}
-          </Col>
-          <Col className="d-flex justify-content-lg-end">
-            <Pagination size="sm">{items}</Pagination>
-          </Col>
-        </Row>
 
       <Modal show={showUnselectedRows} onHide={handleCloseUnselectedRows}>
         <Modal.Header closeButton>

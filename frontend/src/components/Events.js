@@ -3,7 +3,8 @@ import { Filter } from "./Filter";
 import { CustomView } from "./CustomView";
 // import { ActionList } from "./ActionList";
 import { List } from "./List";
-import { Container, Card} from 'react-bootstrap';
+import PaginationList from './PaginationList';
+import { Container, Card, Row} from 'react-bootstrap';
 import { getEventos } from "../Api";
 import Header from "./Header";
 import BlockUi from 'react-block-ui';
@@ -58,6 +59,7 @@ class Events extends React.Component {
     this.setState({ isLoading: true });
     this.setState({ pagination });
     this.getEventos(pagination, paramsState);
+    console.log("setState", this.state);
   };
 
   setParams = ({ environment, filterKey = null, filterValue = null }) => {    
@@ -95,6 +97,9 @@ class Events extends React.Component {
                 <CustomView pagination={this.state.pagination} setPagination={this.setPagination}/>
                 {/* <ActionList pagination={this.state.pagination} setPagination={this.setPagination}/> */}
                 <List eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination} /> 
+                <Row>
+                  <PaginationList eventos={this.state.eventos} pagination={this.state.pagination} setPagination={this.setPagination}/>
+                </Row>
               </Card.Body>
             </Card>
           </BlockUi>

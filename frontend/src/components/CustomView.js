@@ -2,20 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Form, Col, Card, Accordion } from "react-bootstrap";
 import { getEnvironmentList, getFilterKeyList } from "./../Api";
 
-function CustomView({ setPagination }) {
-  const [itensPerPage, setItensPerPage] = useState();
-  const [orderBy, setOrderBy] = useState();
+function CustomView({ pagination, setPagination }) {
 
   const SetNumbersPerPage = e => {
     const itensPerPageValue = e.target.value;
-    setItensPerPage(itensPerPageValue);
-    setPagination(1, itensPerPageValue, orderBy);
+    setPagination(1, itensPerPageValue, pagination.orderByField);
   };
 
   const setOrder = e => {
     const orderByValue = e.target.value;
-    setOrderBy(orderByValue);
-    setPagination(1, itensPerPage, orderByValue);
+    setPagination(1, pagination.linesPerPage, orderByValue);
   };
 
 
