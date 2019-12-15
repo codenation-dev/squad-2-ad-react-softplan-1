@@ -3,6 +3,7 @@ import { Form, Col, Card, Accordion } from "react-bootstrap";
 import { getEnvironmentList, getFilterKeyList } from "./../Api";
 import { Creators as Actions } from "./../store/ducks/events";
 import { useDispatch } from "react-redux";
+import { changeParams } from "../Api";
 
 function Filter(props) {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function Filter(props) {
       paramsState.filterValue = filterValue;
     }
 
-    dispatch(Actions.changeParams(paramsState));
+    changeParams(dispatch, paramsState);
     // props.setParams(paramsState);
   };
 

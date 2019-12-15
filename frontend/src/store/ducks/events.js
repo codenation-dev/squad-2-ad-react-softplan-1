@@ -28,12 +28,16 @@ export const { Types, Creators } = createActions({
 });
 
 const changeParams = (state = INITIAL_STATE, { data, paramsState }) => {
+  console.log("DATA", data);
+  console.log("paramState". paramsState)
+  const result = data;
+  const eventos = result.content;
   return {
     ...state,
     paramsState,
+    eventos,
     pagination: {
       ...state.pagination,
-      ...data
     }
   };
 };

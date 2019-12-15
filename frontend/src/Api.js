@@ -36,11 +36,10 @@ const getEvents = dispatch => {
   });
 };
 
-const changeParams = (dispatch, { paramsState }) => {
+const changeParams = (dispatch, paramsState ) => {
   const paginationNew = {
     pageNo: 0
   };
-
   getEventos(paginationNew, paramsState).then(data => {
     dispatch(Actions.changeParams(data, paramsState));
   });
@@ -93,5 +92,6 @@ export {
   deleteEvents,
   getEnvironmentList,
   getFilterKeyList,
-  getEvents
+  getEvents,
+  changeParams
 };

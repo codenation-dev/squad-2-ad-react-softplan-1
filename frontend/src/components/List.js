@@ -156,7 +156,7 @@ function List({ eventos, pagination, setPagination }) {
             </th>
           </tr>
         </thead>
-        {/* <tbody>
+        <tbody>
             {eventos.length>0?eventos.map(dt => (
               <React.Fragment key={dt.id}>
                 <tr onClick={event => showCollapse(event, dt.id)}>
@@ -201,7 +201,7 @@ function List({ eventos, pagination, setPagination }) {
                 </tr>
               </React.Fragment>
             )):<tr><td colSpan="5">No Records Found</td></tr>}
-          </tbody> */}
+          </tbody>
       </Table>
 
       <Modal show={showUnselectedRows} onHide={handleCloseUnselectedRows}>
