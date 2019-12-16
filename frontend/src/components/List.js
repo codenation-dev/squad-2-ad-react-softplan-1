@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import {
   Form,
-  Card,
-  Pagination,
-  Row,
   Col,
   Button,
   ButtonToolbar,
@@ -14,8 +11,6 @@ import Detail from "./Detail";
 import { shelveEvents, deleteEvents } from "../Api";
 
 function List({ eventos, pagination, setPagination }) {
-  const [itensPerPage, setItensPerPage] = useState();
-  const [orderBy, setOrderBy] = useState();
   const [selectedRows, setSelectedRows] = useState([]);
   const [show, setShow] = useState(false);
   const [eventIdSelected, setEventIdSelected] = useState(1);
@@ -55,36 +50,6 @@ function List({ eventos, pagination, setPagination }) {
     setShowDialogDelete(false);
   };
 
-  let items = [];
-
-  const setPage = page => {
-    setPagination(page, itensPerPage, orderBy);
-  };
-
-  for (let number = 1; number <= pagination.totalPages; number++) {
-    items.push(
-      <Pagination.Item
-        key={number}
-        active={number - 1 === pagination.number}
-        onClick={() => setPage(number)}
-      >
-        {number}
-      </Pagination.Item>
-    );
-  }
-
-  const SetNumbersPerPage = e => {
-    const itensPerPageValue = e.target.value;
-    setItensPerPage(itensPerPageValue);
-    setPagination(1, itensPerPageValue, orderBy);
-  };
-
-  const setOrder = e => {
-    const orderByValue = e.target.value;
-    setOrderBy(orderByValue);
-    setPagination(1, itensPerPage, orderByValue);
-  };
-
   function handleSelectAllByButton(evt) {
     document.getElementById("selectAll").click();
   }
@@ -115,38 +80,17 @@ function List({ eventos, pagination, setPagination }) {
 
   const handleShelveClick = async () => {
     await shelveEvents(selectedRows);
-    setPagination(1, itensPerPage, orderBy);
+    setPagination(1, pagination.linesPerPage, pagination.orderByField);
     setSelectedRows([]);
   };
 
   const handleDeleteClick = async () => {
     await deleteEvents(selectedRows);
-    setPagination(1, itensPerPage, orderBy);
+    setPagination(1, pagination.linesPerPage, pagination.orderByField);
     setSelectedRows([]);
   };
 
-  const showInfo = () => {
-    if(pagination.totalElements === 0){
-      return '';
-    }
-    const start =
-      pagination.number === 0
-        ? 1
-        : pagination.number * pagination.linesPerPage + 1;
-
-    const end =
-      pagination.number === 0
-        ? pagination.linesPerPage
-        : (pagination.number + 1) * pagination.linesPerPage <
-          pagination.totalElements
-        ? (pagination.number + 1) * pagination.linesPerPage
-        : pagination.totalElements;
-
-    return `Showing ${start} to ${end}  of ${pagination.totalElements} records`;
-  };
-
   const showCollapse = (event, eventId) => {
-    //console.log(event.currentTarget);
     if (event.target.type !== "checkbox") {
       setEventIdSelected(eventId);
       handleShow();
@@ -154,32 +98,7 @@ function List({ eventos, pagination, setPagination }) {
   };
 
   return (
-    <Card className="mt-3">
-      <Card.Body>
-        <Form.Row style={{ color: "#000" }}>
-          <Form.Group as={Col} xs="12" md="6" controlId="formGridAmbiente">
-            <Form.Label>Itens per Page</Form.Label>
-            <Form.Control
-              onChange={e => SetNumbersPerPage(e)}
-              as="select"
-              defaultValue={10}
-            >
-              {/* Comentado pois com 5 itens na lista a paginação estrapola telas pequenas */}
-              {/* <option value="5">5</option> */}
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} xs="12" md="6" controlId="formGridAmbiente">
-            <Form.Label>Order By:</Form.Label>
-            <Form.Control onChange={e => setOrder(e)} as="select">
-              <option value="amount">Events</option>
-              <option value="level">Level</option>
-              <option value="environment">Environment</option>
-            </Form.Control>
-          </Form.Group>
-        </Form.Row>
+      <>
         <Form.Row>
           <Form.Group as={Col} xs="12">
             <ButtonToolbar>
@@ -207,7 +126,7 @@ function List({ eventos, pagination, setPagination }) {
               <th className="text-center align-middle" style={{ width: "160px" }}>Environment</th>
               <th className="text-center align-middle" style={{ width: "120px" }}>Level</th>
               <th className="text-center align-middle">Log</th>
-              <th className="text-center align-middle" style={{ width: "120px" }}>Amount</th>
+              <th className="text-center align-middle" style={{ width: "120px" }}>Events</th>
             </tr>
           </thead>
           <tbody>
@@ -257,15 +176,6 @@ function List({ eventos, pagination, setPagination }) {
             )):<tr><td colSpan="5">No Records Found</td></tr>}
           </tbody>
         </Table>
-        <Row>
-          <Col lg={3} className="text-dark">
-            {showInfo()}
-          </Col>
-          <Col className="d-flex justify-content-lg-end">
-            <Pagination size="sm">{items}</Pagination>
-          </Col>
-        </Row>
-      </Card.Body>
 
       <Modal show={showUnselectedRows} onHide={handleCloseUnselectedRows}>
         <Modal.Header closeButton>
@@ -330,7 +240,7 @@ function List({ eventos, pagination, setPagination }) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Card>
+    </>
   );
 }
 

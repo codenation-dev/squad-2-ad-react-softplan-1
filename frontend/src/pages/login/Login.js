@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { history } from '../../history';
 import './Login.css';
+import { handleLogin } from './../../Api'
 import { Spinner, Alert, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {
@@ -13,37 +13,27 @@ import {
 import * as yup from 'yup';
 
 const Login = () => {
-
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
 
-  const handleSubmit = async (values) => {
-    setLoading(true)
+  const handleSubmit = async values => {
+    try {
+      setLoading(true)
+      const data = await handleLogin(values)
+      localStorage.setItem('appToken', data.accessToken)
+      localStorage.setItem('firstName', data.firstName)
+      localStorage.setItem('userToken', data.token)
+      setLoading(false)
+      history.push('/dashboard')
+    }
 
-    await axios.post('https://lognation.herokuapp.com/api/auth/login', values)
-
-      .then(resp => {
-        const { data } = resp
-        if (data) {
-          localStorage.setItem('appToken', data.accessToken)
-          localStorage.setItem('firstName', data.firstName)
-          localStorage.setItem('userToken', data.token)
-          setLoading(false)
-          history.push('/events')
-
-        }
-      })
-      .catch(() => {
-
-        setShowError(true)
-        setLoading(false)
-        setTimeout(() => {
-          setShowError(false)
-        }, 1500)
-
-
-      })
-
+    catch (error) {
+      setShowError(true)
+      setLoading(false)
+      setTimeout(() => {
+        setShowError(false)
+      }, 2000)
+    }
   }
 
   const validations = yup.object().shape({

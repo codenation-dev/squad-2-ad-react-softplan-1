@@ -3,6 +3,8 @@ import {
   Container, Row, Col
 } from "react-bootstrap";
 
+
+//Mover para o Pages
 const NotFound = () => {
   return (
     <div className="box-login">
@@ -11,7 +13,7 @@ const NotFound = () => {
         <br/><br/>
         <Row>
           <Col className="mt-4 text-lg">
-            <h3>Página não econtrada. Clique <a href="/events">aqui</a> para retornar a página de eventos.</h3>
+            <h3>Página não econtrada. Clique <a href="/dashboard">aqui</a> para retornar a página de eventos.</h3>
           </Col>
         </Row>
         

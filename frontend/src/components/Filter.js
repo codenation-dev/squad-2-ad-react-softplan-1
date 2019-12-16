@@ -24,6 +24,7 @@ function Filter(props) {
     props.setParams(paramsState);
   };
 
+  // Verificar onde usa
   const getSearchParams = async () => {
     let asyncFunctions = [getEnvironmentList(), getFilterKeyList()];
 

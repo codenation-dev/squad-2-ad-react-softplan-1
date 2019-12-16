@@ -1,35 +1,39 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { history } from '../../history';
+import { handleRegister } from '../../Api'
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { Form, Field, Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert, Button, Spinner } from 'react-bootstrap';
 
 const Register = () => {
 
   const [showError, setShowError] = useState(false)
   const [showSuccess, setshowSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = values => {
+  const handleSubmit = async values => {
 
-    axios.post('https://lognation.herokuapp.com/api/auth/signup', values)
-      .then(() => {
+    try {
+      setLoading(true)
+      const data = await handleRegister(values)
+      console.log(data)
+      setshowSuccess(true)
+      setLoading(false)
+      setTimeout(() => {
+        setshowSuccess(false)
+        history.push('/')
+      }, 5000);
+    }
 
-        setshowSuccess(true)
-        setTimeout(() => {
-          setshowSuccess(false)
-          history.push('/')
-        }, 5000);
-
-      })
-      .catch(() => {
-        setShowError(true)
-        setTimeout(() => {
-          setShowError(false)
-        }, 5000)
-      })
+    catch (error) {
+      setShowError(true)
+      setLoading(false)
+      setTimeout(() => {
+        setShowError(false)
+      }, 2000)
+    }
   }
 
   const validations = yup.object().shape({
@@ -47,7 +51,7 @@ const Register = () => {
         <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
           <Alert.Heading>Sorry!</Alert.Heading>
           <p>
-            User cannot be create!
+            User cannot be created!
           </p>
         </Alert>
       }
@@ -56,19 +60,18 @@ const Register = () => {
         <Alert variant="success" onClose={() => setshowSuccess(false)} dismissible>
           <Alert.Heading>User Create!</Alert.Heading>
           <p>
-            Your new user has been create!
+            Your new user has been created!
           </p>
         </Alert>
       }
 
       <Formik
-        initialValues={{}}
+        initialValues={{ email: "", firstName: "", lastName: "", password: "" }}
 
         onSubmit={handleSubmit}
         validationSchema={validations}
       >
         <Form className="Register">
-
           <div className="Register-Group">
             <Field
               name="email"
@@ -105,7 +108,7 @@ const Register = () => {
             />
           </div>
 
-          <div Register-Group>
+          <div className="Register-Group">
             <Field
               type="password"
               name="password"
@@ -119,7 +122,14 @@ const Register = () => {
           </div>
 
           <div className="Btn-Div">
-            <Button className="Register-Btn" type="submit">Register</Button>
+            <Button
+              className="Register-Btn"
+              type="submit"
+              disabled={loading}>
+              {loading && <span>Loading  </span>}
+              {loading && <Spinner animation="border" />}
+              {!loading && <span>Register</span>}
+            </Button>
             <Link to="/"><Button variant="secondary" className="Back-Btn">Return</Button></Link>
           </div>
         </Form>

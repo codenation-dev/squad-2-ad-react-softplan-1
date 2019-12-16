@@ -13,10 +13,10 @@ function DetailItem({ dataEvent }) {
     <Row>
       <Col xs={12} lg={8}>
         <h5> Title </h5>
-        <p>{ dataEvent.title }</p>
+        <span>{ dataEvent.title }</span>
 
         <h5> Details </h5>
-        <p>{ dataEvent.details }</p>
+        <span>{ dataEvent.details }</span>
       </Col>
 
       <Col xs={12} lg={4}>
@@ -35,10 +35,10 @@ function DetailItem({ dataEvent }) {
         </Alert>
 
         <h5> Events </h5>
-        <p> { dataEvent.amount } </p>
+        <span> { dataEvent.amount } </span>
 
         <h5> Origin </h5>
-        <p> { dataEvent.userToken } </p>
+        <span> { dataEvent.userToken } </span>
       </Col>
     </Row>
     </React.Fragment>
