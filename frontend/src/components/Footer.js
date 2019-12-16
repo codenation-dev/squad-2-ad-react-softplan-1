@@ -1,17 +1,14 @@
 import React from 'react';
-import logo from '../assets/logo.png';
 
 const Footer = () => {
   return(
     <footer>
-   
       <small> &copy;Squad2 - Powered by Codenation &amp; Softplan
-        <br />
-        <img src={logo} width="100" height="50" alt="footer-img" />
-        Diego Geremias -
-        Diego Vissini -
-        Eduardo Kraus Nunes -
-        Fernando Lima
+        <br /> 
+        <a href="https://www.linkedin.com/in/diegofgeremias"> Diego Geremias - </a>
+        <a href="https://www.linkedin.com/in/diegovissini"> Diego Vissini - </a>
+        <a href="https://www.linkedin.com/in/edukrausnunes"> Eduardo Kraus Nunes - </a>
+        <a href="https://www.linkedin.com/in/fernando-lima-it"> Fernando Lima </a>
       </small>
     </footer>
   )

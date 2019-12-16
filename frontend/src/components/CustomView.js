@@ -24,8 +24,7 @@ function CustomView({ pagination, setPagination }) {
             as="select"
             defaultValue={10}
           >
-            {/* Comentado pois com 5 itens na lista a paginação estrapola telas pequenas */}
-            {/* <option value="5">5</option> */}
+            <option value="5">5</option>
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
