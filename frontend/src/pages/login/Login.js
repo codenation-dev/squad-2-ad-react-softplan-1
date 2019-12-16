@@ -25,11 +25,6 @@ const Login = () => {
       .then(resp => {
         const { data } = resp
         if (data) {
-          // console.log(data)
-          // console.log(data.email)
-          // console.log(data.firstName)
-          // console.log(data.token)
-
           localStorage.setItem('appToken', data.accessToken)
           localStorage.setItem('firstName', data.firstName)
           localStorage.setItem('userToken', data.token)
@@ -68,7 +63,7 @@ const Login = () => {
       }
 
       <Formik
-        initialValues={{}}
+        initialValues={{ email: "", password: "" }}
         onSubmit={handleSubmit}
         validationSchema={validations}
       >
@@ -92,7 +87,7 @@ const Login = () => {
             <Field
               type="password"
               name="password"
-              className="Login-Field"
+              className="Password-Field"
               placeholder="Type your password"
 
             />
