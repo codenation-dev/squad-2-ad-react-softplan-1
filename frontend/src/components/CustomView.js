@@ -1,11 +1,20 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Col } from "react-bootstrap";
+import { changePagination } from "../Api";
 
 function CustomView({ pagination, setPagination }) {
-
+  const dispatch = useDispatch();
+  const paginationState = useSelector(state => state.pagination);
+  
   const SetNumbersPerPage = e => {
     const itensPerPageValue = e.target.value;
-    setPagination(1, itensPerPageValue, pagination.orderByField);
+    const pagination = paginationState;
+    console.log('pagination',pagination)
+    pagination.pageNo = 0;
+    pagination.linesPerPage = itensPerPageValue;
+    changeParams(dispatch, pagination);
+    // setPagination(1, itensPerPageValue, pagination.orderByField);
   };
 
   const setOrder = e => {

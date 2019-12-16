@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { Creators as Actions } from "./store/ducks/events";
 
 const getToken = () => ({
@@ -45,7 +46,11 @@ const changeParams = (dispatch, paramsState ) => {
   });
 };
 
-// const changePagination = (state = INITIAL_STATE, { isLoading, pagination }) => {
+ const changePagination = (dispatch, pagination) => {
+  const paramsState = useSelector(state => state.paramsState);
+  getEventos(pagination, paramsState).then(data => {
+    dispatch(Actions.changeParams(data, paramsState));
+  });
 //   const result = getEventos(pagination, state.paramsState);
 
 //   return {
@@ -56,7 +61,7 @@ const changeParams = (dispatch, paramsState ) => {
 //       ...result
 //     }
 //   };
-// };
+ };
 const shelveEvents = async eventIds => {
   const headers = getToken();
   await API.post(`/events/shelveMany`, eventIds, { headers });
@@ -93,5 +98,5 @@ export {
   getEnvironmentList,
   getFilterKeyList,
   getEvents,
-  changeParams
+  changeParams,
 };

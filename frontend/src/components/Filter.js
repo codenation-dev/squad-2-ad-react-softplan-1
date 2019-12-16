@@ -63,7 +63,8 @@ function Filter(props) {
     if (environment) {
       paramsState.environment = environment;
     }
-    props.setParams(paramsState);
+    changeParams(dispatch, paramsState);
+    // props.setParams(paramsState);
   };
 
   return (
