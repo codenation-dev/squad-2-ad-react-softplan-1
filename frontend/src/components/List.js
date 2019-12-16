@@ -126,7 +126,7 @@ function List({ eventos, pagination, setPagination }) {
               <th className="text-center align-middle" style={{ width: "160px" }}>Environment</th>
               <th className="text-center align-middle" style={{ width: "120px" }}>Level</th>
               <th className="text-center align-middle">Log</th>
-              <th className="text-center align-middle" style={{ width: "120px" }}>Amount</th>
+              <th className="text-center align-middle" style={{ width: "120px" }}>Events</th>
             </tr>
           </thead>
           <tbody>
